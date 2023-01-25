@@ -8,11 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
-@Table(name = "utilisateurs")
-public class Utilisateur {
+@Table(name = "statuts")
+public class Statut {
   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +22,5 @@ public class Utilisateur {
   
     @Column(name = "nom")
     private String nom;
-  
-    @Column(name = "prenom")
-    private String prenom;
-  
-    @Column(name = "email")
-    private String email;
-  
-    @Column(name = "mot_de_passe")
-    private String motDePasse;
 }
+
