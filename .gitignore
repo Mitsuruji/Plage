@@ -75,3 +75,5 @@ target/
 
 # Spring server config file #
 /src/main/resources/application.properties
+
+log/
