@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "utilisateurs")
-public class Utilisateur {
+public abstract class Utilisateur {
   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,9 @@ public class Utilisateur {
   
     @Column(name = "prenom")
     private String prenom;
-  
+
+	@Email
+	@NotBlank
     @Column(name = "email")
     private String email;
   

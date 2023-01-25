@@ -2,9 +2,12 @@ package fr.orsys.projet.plage.business;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -23,6 +26,6 @@ public class Pays {
 	@NotBlank(message="Merci de préciser le nom de votre pays")
 	private String nom;
 	
-	@ManyToMany(mappedBy = "locataires")
+	@OneToMany(mappedBy="pays", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Locataire> locataires;
 }

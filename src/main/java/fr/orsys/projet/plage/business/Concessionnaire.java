@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "concessionnaires")
 public class Concessionnaire extends Utilisateur{
 	
 	@Column(name = "numero_de_telephone")
