@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "locataires")
 public class Locataire extends Utilisateur{
   
     @Id
