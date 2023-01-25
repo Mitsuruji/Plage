@@ -2,7 +2,6 @@ package fr.orsys.projet.plage.business;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 import lombok.Data;
