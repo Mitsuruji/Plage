@@ -12,5 +12,7 @@ public interface ParasolDAO extends JpaRepository<Parasol, Long> {
 
 	List<Location> findByNumEmplacement(byte numEmpl);
 	
+	Parasol findByNumEmplacementAndFileId(byte numEmplacement, Long fileId);
+	
 	File findFileById(Long id);
 }
