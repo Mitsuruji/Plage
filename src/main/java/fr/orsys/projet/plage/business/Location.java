@@ -1,4 +1,4 @@
-package fr.orsys.projet.plage.model;
+package fr.orsys.projet.plage.business;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package fr.orsys.projet.plage.model;
+package fr.orsys.projet.plage.business;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
