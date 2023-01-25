@@ -1,7 +1,5 @@
 package fr.orsys.projet.plage.dto;
 
-import java.util.List;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

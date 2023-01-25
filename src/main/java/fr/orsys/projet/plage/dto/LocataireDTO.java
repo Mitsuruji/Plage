@@ -13,16 +13,11 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LocataireDTO {
+public class LocataireDTO  extends UtilisateurDTO{
 
-    private Long id;
-    private String nom;
-    private String prenom;
-    private String email;
-    private String motDePasse;
-    private LocalDateTime dateHeureInscription;
-//    private LienDeParenteDTO lienDeParente;
-//    private List<LocationDTO> locations;
-//    private PaysDTO pays;
+	LocalDateTime dateHeureInscription;
+	LienDeParenteDTO lienDeParente;
+	List<LocationDTO> locations;
+	PaysDTO pays;
 
 }

@@ -18,19 +18,19 @@ public abstract class Utilisateur {
   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
   
     @Column(name = "nom")
-    private String nom;
+    protected String nom;
   
     @Column(name = "prenom")
-    private String prenom;
+    protected String prenom;
 
 	@Email
 	@NotBlank
     @Column(name = "email")
-    private String email;
+	protected String email;
   
     @Column(name = "mot_de_passe")
-    private String motDePasse;
+    protected String motDePasse;
 }

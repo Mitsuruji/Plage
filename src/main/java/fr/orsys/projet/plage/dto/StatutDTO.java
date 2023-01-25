@@ -10,11 +10,8 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UtilisateurDTO {
+public class StatutDTO {
 
 	Long id;
 	String nom;
-	String prenom;
-	String email;
-	String motDePasse;
 }

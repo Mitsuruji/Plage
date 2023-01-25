@@ -22,11 +22,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class Locataire extends Utilisateur{
-  
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-  
+    
     @Column(name = "date_heure_inscription")
     private LocalDateTime dateHeureInscription;
     
