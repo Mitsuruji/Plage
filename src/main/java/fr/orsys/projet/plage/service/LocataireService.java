@@ -12,11 +12,11 @@ public interface LocataireService {
 
 	Locataire getLocataireByEmail(String email);
 
-	List<Locataire> getLocatairesByPays(String codePays);
+	List<Locataire> getLocatairesByPaysCode(String codePays);
 
-	List<Locataire> getLocatairesByLienParente(Long idLienParente);
+	List<Locataire> getLocatairesDeParenteId(Long idLienDeParente);
 
-	List<Locataire> getLocatairesBySateHeureInscription(String order);
+	List<Locataire> getLocatairesByDateHeureInscriptionDesc(); 
 
 	Locataire addLocataire(Locataire locataire);
 

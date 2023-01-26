@@ -32,18 +32,18 @@ public class LocataireServiceImpl implements LocataireService {
 	}
 
 	@Override
-	public List<Locataire> getLocatairesByPays(String codePays) {
+	public List<Locataire> getLocatairesByPaysCode(String codePays) {
 		return locataireDAO.findByPaysCode(codePays);
 	}
 
 	@Override
-	public List<Locataire> getLocatairesByLienParente(Long idLienParente) {
-		return locataireDAO.findByLienParenteId(idLienParente);
+	public List<Locataire> getLocatairesDeParenteId(Long idLienParente) {
+		return locataireDAO.findByLienDeParenteId(idLienParente);
 	}
 
 	@Override
-	public List<Locataire> getLocatairesBySateHeureInscription(String order) {
-		return locataireDAO.findByOrderBydateHeureInscription(order);
+	public List<Locataire> getLocatairesByDateHeureInscriptionDesc() {
+		return locataireDAO.findAllByOrderByDateHeureInscriptionDesc();
 	}
 
 	@Override
