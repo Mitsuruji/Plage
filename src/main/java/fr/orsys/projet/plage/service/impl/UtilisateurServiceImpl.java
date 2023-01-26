@@ -12,9 +12,11 @@ import fr.orsys.projet.plage.dao.ConcessionnaireDAO;
 import fr.orsys.projet.plage.dao.LocataireDAO;
 import fr.orsys.projet.plage.dao.UtilisateurDAO;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
+import fr.orsys.projet.plage.dto.LocataireDTO;
 import fr.orsys.projet.plage.exception.FileExistantException;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.mapper.ConcessionnaireMapper;
+import fr.orsys.projet.plage.mapper.LocataireMapper;
 import fr.orsys.projet.plage.service.UtilisateurService;
 
 @Service
@@ -24,6 +26,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	private ConcessionnaireDAO concessionnaireDAO;
 	private ConcessionnaireMapper concessionnaireMapper;
 	private LocataireDAO locataireDAO;
+	private LocataireMapper locataireMapper;
 	
 	
 	
@@ -103,8 +106,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@Override
-	public Locataire addLocataire(Locataire locataire) {
-		return locataireDAO.save(locataire);
+	public Locataire addLocataire(LocataireDTO locataireDTO) {
+	    Locataire locataire = locataireMapper.toEntity(locataireDTO);
+	    return locataireDAO.save(locataire);
 	}
 
 	@Override

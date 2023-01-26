@@ -2,15 +2,22 @@ package fr.orsys.projet.plage.service;
 
 import java.util.List;
 
-import fr.orsys.projet.plage.business.Locataire;
-import fr.orsys.projet.plage.business.Location;
+import fr.orsys.projet.plage.dto.LocataireDTO;
+import fr.orsys.projet.plage.dto.LocationDTO;
 
 public interface LocationService {
-	Location getLocation(Long id);
-	List<Location> getLocations();
-	List<Location> getLocationsByLocataire(Locataire locataire);
-	Location addLocation(Location location);
-     void updateLocation(Location location);
-    void deleteLocation(long id);
+	LocationDTO getLocation(Long id);
+
+	List<LocationDTO> getLocations();
+
+	List<LocationDTO> getLocationsByLocataire(LocataireDTO locataireDTO);
+
+	LocationDTO addLocation(LocationDTO locationDTO);
+
+	void updateLocation(LocationDTO locationDTO);
+
+	void deleteLocation(long id);
+
 	void gererLocation(Long id, boolean isConfirmed);
+
 }

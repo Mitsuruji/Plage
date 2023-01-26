@@ -7,6 +7,7 @@ import fr.orsys.projet.plage.business.Concessionnaire;
 import fr.orsys.projet.plage.business.Locataire;
 import fr.orsys.projet.plage.business.Utilisateur;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
+import fr.orsys.projet.plage.dto.LocataireDTO;
 
 public interface UtilisateurService {
 
@@ -36,7 +37,7 @@ public interface UtilisateurService {
 
 	List<Locataire> getLocatairesByDateHeureInscriptionDesc(); 
 
-	Locataire addLocataire(Locataire locataire);
+	Locataire addLocataire(LocataireDTO locataireDTO);
 
 	void deleteClient(Long id);
 }

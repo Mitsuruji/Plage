@@ -1,5 +1,6 @@
 package fr.orsys.projet.plage.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -7,60 +8,79 @@ import org.springframework.stereotype.Service;
 import fr.orsys.projet.plage.business.Locataire;
 import fr.orsys.projet.plage.business.Location;
 import fr.orsys.projet.plage.dao.LocationDAO;
+import fr.orsys.projet.plage.dto.LocataireDTO;
+import fr.orsys.projet.plage.dto.LocationDTO;
 import fr.orsys.projet.plage.enums.StatutEnum;
 import fr.orsys.projet.plage.exception.LocationNotFoundException;
+import fr.orsys.projet.plage.mapper.LocataireMapper;
+import fr.orsys.projet.plage.mapper.LocationMapper;
 import fr.orsys.projet.plage.service.LocationService;
 
 @Service
 public class LocationServiceImpl implements LocationService {
 
 	private final LocationDAO locationDAO;
+	private final LocationMapper locationMapper;
+	private final LocataireMapper locataireMapper;
 
-	public LocationServiceImpl(LocationDAO locationDAO) {
-		this.locationDAO = locationDAO;
+	public LocationServiceImpl(LocationDAO locationDAO, LocationMapper locationMapper, LocataireMapper locataireMapper) {
+	    this.locationDAO = locationDAO;
+	    this.locationMapper = locationMapper;
+	    this.locataireMapper = locataireMapper;
 	}
 
 	@Override
-	public Location getLocation(Long id) {
-		return locationDAO.findById(id)
-				.orElseThrow(() -> new LocationNotFoundException("Location d'identifiant " + id + " inexistante"));
+	public LocationDTO getLocation(Long id) {
+	    Location location = locationDAO.findById(id)
+	            .orElseThrow(() -> new LocationNotFoundException("Location d'identifiant " + id + " inexistante"));
+	    return locationMapper.toDto(location);
 	}
 
 	@Override
-	public List<Location> getLocations() {
-		return locationDAO.findAll();
+	public List<LocationDTO> getLocations() {
+	    List<Location> locations = locationDAO.findAll();
+	    List<LocationDTO> locationDTOs = new ArrayList<>();
+	    for(Location location:locations){
+	        locationDTOs.add(locationMapper.toDto(location));
+	    }
+	    return locationDTOs;
 	}
 
 	@Override
-	public List<Location> getLocationsByLocataire(Locataire locataire) {
-		return locationDAO.findByLocataire(locataire);
+	public List<LocationDTO> getLocationsByLocataire(LocataireDTO locataireDTO) {
+	    Locataire locataire = locataireMapper.toEntity(locataireDTO);
+	    List<Location> locations = locationDAO.findByLocataire(locataire);
+	    return locationMapper.toDtos(locations);
 	}
 
 	@Override
-	public Location addLocation(Location location) {
-		return locationDAO.save(location);
+	public LocationDTO addLocation(LocationDTO locationDTO) {
+	    Location location = locationMapper.toEntity(locationDTO);
+	    location = locationDAO.save(location);
+	    return locationMapper.toDto(location);
 	}
 
 	@Override
-	public void updateLocation(Location location) {
-		locationDAO.save(location);
+	public void updateLocation(LocationDTO locationDTO) {
+	    Location location = locationMapper.toEntity(locationDTO);
+	    locationDAO.save(location);
 	}
 
 	@Override
 	public void deleteLocation(long id) {
-		locationDAO.deleteById(id);
+	    locationDAO.deleteById(id);
 	}
 
 	@Override
 	public void gererLocation(Long id, boolean isConfirmed) {
-		Location location = locationDAO.findById(id)
-				.orElseThrow(() -> new LocationNotFoundException("Location d'identifiant " + id + " inexistante"));
-		if (isConfirmed) {
-			location.getStatut().setNom(StatutEnum.CONFIRMEE.toString());
-		} else {
-			location.getStatut().setNom(StatutEnum.REFUSEE.toString());
-		}
-		locationDAO.save(location);
+	    Location location = locationDAO.findById(id)
+	            .orElseThrow(() -> new LocationNotFoundException("Location d'identifiant " + id + " inexistante"));
+	    if (isConfirmed) {
+	        location.getStatut().setNom(StatutEnum.CONFIRMEE.toString());
+	    } else {
+	        location.getStatut().setNom(StatutEnum.REFUSEE.toString());
+	    }
+	    locationDAO.save(location);
 	}
 
 }

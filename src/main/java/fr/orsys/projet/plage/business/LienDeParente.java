@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -31,6 +32,6 @@ public class LienDeParente {
 	@NotBlank(message="Merci de préciser le nom du lien de parenté")
 	private String nom;
 	
-	@Positive
+	@PositiveOrZero
 	private float coefficient;
 }
