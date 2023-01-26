@@ -6,6 +6,6 @@ import fr.orsys.projet.plage.business.Pays;
 
 public interface PaysDAO extends JpaRepository<Pays, String> {
 
-    Pays findByCode(String code);
+	Pays findByNom(String nom);
 
 }

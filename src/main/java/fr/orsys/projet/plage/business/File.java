@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 import lombok.Data;
@@ -22,11 +23,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "files")
 public class File {
 
+	public File(byte numero, double prixJournalier) {
+		this.numero = numero;
+		this.prixJournalier = prixJournalier;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	
+	@Positive
 	private byte numero;
 	
 	@Column(name = "prix_journalier")
@@ -35,4 +41,6 @@ public class File {
 	
 	@OneToMany(mappedBy="file", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Parasol> parasols;
+	
+	
 }

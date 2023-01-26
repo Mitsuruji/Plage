@@ -10,9 +10,11 @@ import fr.orsys.projet.plage.business.Parasol;
 
 public interface ParasolDAO extends JpaRepository<Parasol, Long> {
 
-	List<Location> findByNumEmplacement(byte numEmpl);
+	List<Location> findLocationsByNumEmplacement(Long id);
 	
-	Parasol findByNumEmplacementAndFileId(byte numEmplacement, Long fileId);
+	Parasol findByNumEmplacement(byte numEmplacement);
 	
 	File findFileById(Long id);
+
+	boolean existsByNumEmplacement(byte numEmplacement);
 }

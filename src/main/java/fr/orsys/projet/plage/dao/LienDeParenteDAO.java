@@ -6,6 +6,8 @@ import fr.orsys.projet.plage.business.LienDeParente;
 
 public interface LienDeParenteDAO extends JpaRepository<LienDeParente, Long>{
 	
-	float findCoefficientByNom (String nom);
+	boolean existsByNom(String nom);
+
+	LienDeParente findByNom(String nom);
 
 }

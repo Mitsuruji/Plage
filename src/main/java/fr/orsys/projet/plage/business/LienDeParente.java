@@ -18,6 +18,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "liens_de_parente")
 public class LienDeParente {
 
+	public LienDeParente(String nom, float coefficient) {
+		this.nom = nom;
+		this.coefficient = coefficient;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

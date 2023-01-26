@@ -14,6 +14,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class Concessionnaire extends Utilisateur{
 	
+	public Concessionnaire(String numeroDeTelephone) {
+		this.numeroDeTelephone = numeroDeTelephone;
+	}
+
 	@Column(name = "numero_de_telephone")
 	@Pattern(regexp="^[0-9]{10}$|^\\+[0-9]{1,3} ?[0-9]{4,14}$")
 	private String numeroDeTelephone;

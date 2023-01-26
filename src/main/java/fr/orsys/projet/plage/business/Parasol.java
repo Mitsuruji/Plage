@@ -21,6 +21,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "parasols")
 public class Parasol {
 
+	public Parasol(byte numEmplacement) {
+		this.numEmplacement = numEmplacement;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

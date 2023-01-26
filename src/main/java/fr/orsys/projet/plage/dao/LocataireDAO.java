@@ -1,5 +1,6 @@
 package fr.orsys.projet.plage.dao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,11 +11,11 @@ public interface LocataireDAO extends JpaRepository<Locataire, Long> {
 
 	List<Locataire> findByPays(String pays);
 
-	List<Locataire> findByOrderBydateHeureInscription(String order);
+	List<Locataire> findAllByOrderByDateHeureInscriptionDesc();
 
 	List<Locataire> findByPaysCode(String codePays);
 
-	List<Locataire> findByLienParenteId(Long idLienParente);
+	List<Locataire> findByLienDeParenteId(Long idLienParente);
 
 	Locataire findByEmail(String email);
 
