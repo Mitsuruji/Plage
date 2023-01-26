@@ -7,9 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,18 +18,17 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
-public class Locataire extends Utilisateur{
-    
-    @Column(name = "date_heure_inscription")
-    private LocalDateTime dateHeureInscription;
-    
-    
-    @OneToMany(mappedBy="locataire", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Location> locations;
-    
-    @ManyToOne
-    private Pays pays;
+public class Locataire extends Utilisateur {
 
-    @ManyToOne
-    private LienDeParente lienDeParente;
+	@Column(name = "date_heure_inscription")
+	private LocalDateTime dateHeureInscription;
+
+	@OneToMany(mappedBy = "locataire", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Location> locations;
+
+	@ManyToOne
+	private Pays pays;
+
+	@ManyToOne
+	private LienDeParente lienDeParente;
 }
