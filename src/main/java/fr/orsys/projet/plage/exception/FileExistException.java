@@ -1,13 +1,13 @@
 package fr.orsys.projet.plage.exception;
 
-public class PaysExistantException extends RuntimeException {
+public class FileExistException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public PaysExistantException(String message) {
+	public FileExistException(String message) {
 		super(message);
 	}
 }

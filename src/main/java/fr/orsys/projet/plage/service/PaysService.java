@@ -8,16 +8,16 @@ import fr.orsys.projet.plage.dto.PaysDTO;
 
 public interface PaysService {
 
-	Pays ajouterPays(String nom, String code);
+	Pays addPays(String nom, String code);
 	
-	Pays enregistrerPays(Pays pays);
+	Pays savePays(Pays pays);
 	
-	Pays enregistrerPays(PaysDTO paysDTO);
+	Pays savePays(PaysDTO paysDTO);
 	
-	List<Pays> recupererTousPays();
+	List<Pays> getTousPays();
 	
-	Optional<Pays> recupererPaysByCode(String code);
+	Optional<Pays> getPaysByCode(String code);
 	
-	Pays recupererPaysByNom(String nom);
+	Pays getPaysByNom(String nom);
 	
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import fr.orsys.projet.plage.business.Pays;
 import fr.orsys.projet.plage.dao.PaysDAO;
 import fr.orsys.projet.plage.dto.PaysDTO;
-import fr.orsys.projet.plage.exception.PaysExistantException;
+import fr.orsys.projet.plage.exception.PaysExistException;
 import fr.orsys.projet.plage.mapper.PaysMapper;
 import fr.orsys.projet.plage.service.PaysService;
 
@@ -21,36 +21,36 @@ public class PaysServiceImpl implements PaysService {
 	private PaysMapper paysMapper;
 	
 	@Override
-	public Pays ajouterPays(String code, String nom) {
+	public Pays addPays(String code, String nom) {
 		if (paysDAO.existsById(code)) {
-			throw new PaysExistantException("Ce pays est déjà présent en base");
+			throw new PaysExistException("Ce pays est déjà présent en base");
 		}
 		return paysDAO.save(new Pays(code, nom));
 	}
 
 	@Override
-	public Pays enregistrerPays(Pays pays) {
+	public Pays savePays(Pays pays) {
 		return paysDAO.save(pays);
 	}
 
 	@Override
-	public Pays enregistrerPays(PaysDTO paysDTO) {
+	public Pays savePays(PaysDTO paysDTO) {
 		Pays pays = paysMapper.toEntity(paysDTO);
-		return enregistrerPays(pays);
+		return savePays(pays);
 	}
 	
 	@Override
-	public List<Pays> recupererTousPays() {
+	public List<Pays> getTousPays() {
 		return paysDAO.findAll();
 	}
 
 	@Override
-	public Optional<Pays> recupererPaysByCode(String code) {
+	public Optional<Pays> getPaysByCode(String code) {
 		return paysDAO.findById(code);
 	}
 
 	@Override
-	public Pays recupererPaysByNom(String nom) {
+	public Pays getPaysByNom(String nom) {
 		return paysDAO.findByNom(nom);
 	}
 

@@ -16,27 +16,27 @@ import javax.validation.constraints.PositiveOrZero;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @Data
+@RequiredArgsConstructor
 @Table(name = "files")
 public class File {
-
-	public File(byte numero, double prixJournalier) {
-		this.numero = numero;
-		this.prixJournalier = prixJournalier;
-	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Positive
+	@NonNull
 	private byte numero;
 	
 	@Column(name = "prix_journalier")
 	@PositiveOrZero
+	@NonNull
 	private double prixJournalier;
 	
 	@OneToMany(mappedBy="file", fetch=FetchType.EAGER, cascade = CascadeType.ALL)

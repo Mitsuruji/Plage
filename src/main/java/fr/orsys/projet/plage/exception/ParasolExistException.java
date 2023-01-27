@@ -1,13 +1,13 @@
 package fr.orsys.projet.plage.exception;
 
-public class ParasolExistantException extends RuntimeException {
+public class ParasolExistException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ParasolExistantException(String message) {
+	public ParasolExistException(String message) {
 		super(message);
 	}
 }

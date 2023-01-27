@@ -8,17 +8,17 @@ import fr.orsys.projet.plage.dto.LienDeParenteDTO;
 
 public interface LienDeParenteService {
 
-	LienDeParente ajouterLienDeParente(String nom, float coefficient);
+	LienDeParente addLienDeParente(String nom, float coefficient);
 	
-	LienDeParente enregisterLienDeParente(LienDeParente lienDeParente);
+	LienDeParente saveLienDeParente(LienDeParente lienDeParente);
 	
-	LienDeParente enregisterLienDeParente(LienDeParenteDTO lienDeParenteDTO);
+	LienDeParente saveLienDeParente(LienDeParenteDTO lienDeParenteDTO);
 	
-	List<LienDeParente> recupererLienDeParentes();
+	List<LienDeParente> getLienDeParentes();
 	
-	Optional<LienDeParente> recupererLienDeParente(Long id);
+	Optional<LienDeParente> getLienDeParente(Long id);
 	
-	LienDeParente recupererLienDeParente(String nom);
+	LienDeParente getLienDeParente(String nom);
 	
 	LienDeParente updateLienDeParente(String nom, float coefficient);
 }

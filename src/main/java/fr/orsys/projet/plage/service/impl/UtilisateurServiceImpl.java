@@ -13,7 +13,7 @@ import fr.orsys.projet.plage.dao.UtilisateurDAO;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
 import fr.orsys.projet.plage.dto.LocataireDTO;
 import fr.orsys.projet.plage.dto.UtilisateurDTO;
-import fr.orsys.projet.plage.exception.FileExistantException;
+import fr.orsys.projet.plage.exception.FileExistException;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.mapper.ConcessionnaireMapper;
 import fr.orsys.projet.plage.mapper.LocataireMapper;
@@ -33,7 +33,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Override
 	public Concessionnaire ajouterConcessionnaire(String numeroDeTelephone) {
 		if (concessionnaireDAO.existsByNumeroDeTelephone(numeroDeTelephone)) {
-			throw new FileExistantException("Ce concessionnaire est déjà présent en base");
+			throw new FileExistException("Ce concessionnaire est déjà présent en base");
 		}
 		return concessionnaireDAO.save(new Concessionnaire(numeroDeTelephone));
 	}

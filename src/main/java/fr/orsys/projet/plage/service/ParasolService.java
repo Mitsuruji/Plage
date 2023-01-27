@@ -10,19 +10,22 @@ import fr.orsys.projet.plage.dto.ParasolDTO;
 
 public interface ParasolService {
 
-	Parasol ajouterParasol(byte numEmplacement);
+	Parasol addParasol(byte numEmplacement);
 	
-	Parasol enregisterParasol(Parasol parasol);
+	Parasol saveParasol(Parasol parasol);
 	
-	Parasol enregisterParasol(ParasolDTO parasolDTO);
+	Parasol saveParasol(ParasolDTO parasolDTO);
 	
-	List<Parasol> recupererParasols();
+	List<Parasol> getParasols();
 	
-	Optional<Parasol> recupererParasol(Long id);
+	List<ParasolDTO> getParasolsDTO();
 	
-	Parasol recupererParasol(byte numEmplacement);
+	Optional<Parasol> getParasol(Long id);
 	
-	List<Location> recupererLocationsByParasol(Parasol parasol);
+	Parasol getParasol(byte numEmplacement);
 	
-	File recupererFileByParasol(Parasol parasol);
+	List<Location> getLocationsByParasol(Parasol parasol);
+	
+	File getFileByParasol(Parasol parasol);
+
 }

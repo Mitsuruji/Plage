@@ -1,13 +1,14 @@
 package fr.orsys.projet.plage.exception;
 
-public class LienDeParenteInexistantException extends RuntimeException {
+public class LienDeParenteExistException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public LienDeParenteInexistantException(String message) {
+	public LienDeParenteExistException(String message) {
 		super(message);
 	}
+
 }

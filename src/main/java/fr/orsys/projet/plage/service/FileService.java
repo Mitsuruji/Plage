@@ -9,19 +9,22 @@ import fr.orsys.projet.plage.dto.FileDTO;
 
 public interface FileService {
 
-	File ajouterFile(byte numero, double prixJournalier);
+	File addFile(byte numero, double prixJournalier);
 	
-	File enregisterFile(File file);
+	File saveFile(File file);
 	
-	File enregisterFile(FileDTO fileDTO);
+	File saveFile(FileDTO fileDTO);
 	
-	List<File> recupererFiles();
+	List<File> getFiles();
 	
-	Optional<File> recupererFile(Long id);
+	List<FileDTO> getFilesDTO();
 	
-	File recupererFile(byte numero);
+	Optional<File> getFile(Long id);
 	
-	List<Parasol> recupererParasolesParFile(File file);
+	File getFile(byte numero);
+	
+	List<Parasol> getParasolesByFile(File file);
 	
 	File updateFile(byte numero, double prixJournalier);
+
 }
