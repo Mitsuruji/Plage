@@ -3,6 +3,8 @@ package fr.orsys.projet.plage.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import fr.orsys.projet.plage.business.LienDeParente;
 import fr.orsys.projet.plage.dao.LienDeParenteDAO;
 import fr.orsys.projet.plage.dto.LienDeParenteDTO;
@@ -11,11 +13,18 @@ import fr.orsys.projet.plage.exception.LienDeParenteInexistantException;
 import fr.orsys.projet.plage.mapper.LienDeParenteMapper;
 import fr.orsys.projet.plage.service.LienDeParenteService;
 
+@Service
 public class LienDeParenteServiceImpl implements LienDeParenteService {
 
-	private LienDeParenteDAO lienDeParenteDAO;
-	private LienDeParenteMapper lienDeParenteMapper;
+	private final LienDeParenteDAO lienDeParenteDAO;
+	private final LienDeParenteMapper lienDeParenteMapper;
 	
+	
+	public LienDeParenteServiceImpl(LienDeParenteDAO lienDeParenteDAO, LienDeParenteMapper lienDeParenteMapper) {
+		this.lienDeParenteDAO = lienDeParenteDAO;
+		this.lienDeParenteMapper = lienDeParenteMapper;
+	}
+
 	@Override
 	public LienDeParente ajouterLienDeParente(String nom, float coefficient) {
 		if (lienDeParenteDAO.existsByNom(nom)) {

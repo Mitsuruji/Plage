@@ -37,7 +37,7 @@ public interface UtilisateurService {
 
 	List<LocataireDTO> getLocatairesByDateHeureInscriptionDesc(); 
 
-	Locataire addLocataire(LocataireDTO locataireDTO);
+	LocataireDTO addLocataire(LocataireDTO locataireDTO);
 
 	void deleteClient(Long id);
 }

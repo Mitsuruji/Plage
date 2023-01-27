@@ -3,6 +3,8 @@ package fr.orsys.projet.plage.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import fr.orsys.projet.plage.business.File;
 import fr.orsys.projet.plage.business.Parasol;
 import fr.orsys.projet.plage.dao.FileDAO;
@@ -12,11 +14,17 @@ import fr.orsys.projet.plage.exception.FileInexistantException;
 import fr.orsys.projet.plage.mapper.FileMapper;
 import fr.orsys.projet.plage.service.FileService;
 
-public class FileServiceImpl implements FileService{
+@Service
+public class FileServiceImpl implements FileService {
 
-	private FileDAO fileDAO;
-	private FileMapper fileMapper;
-	
+	private final FileDAO fileDAO;
+	private final FileMapper fileMapper;
+
+	public FileServiceImpl(FileDAO fileDAO, FileMapper fileMapper) {
+		this.fileDAO = fileDAO;
+		this.fileMapper = fileMapper;
+	}
+
 	@Override
 	public File ajouterFile(byte numero, double prixJournalier) {
 		if (fileDAO.existsByNumero(numero)) {
@@ -55,7 +63,7 @@ public class FileServiceImpl implements FileService{
 	public List<Parasol> recupererParasolesParFile(File file) {
 		return fileDAO.findParasolsById(file.getId());
 	}
-	
+
 	@Override
 	public File updateFile(byte numero, double prixJournalier) {
 		if (!fileDAO.existsByNumero(numero)) {

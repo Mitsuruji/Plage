@@ -64,12 +64,9 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	}
 
 	private void ajouterLiensDeParente() {
-		LienDeParente frereSoeur = new LienDeParente("frère/sœur", 0.5F);
-		lienDeParenteDAO.save(frereSoeur);
-		LienDeParente cousinCousine = new LienDeParente("cousin/cousine", 0.25F);
-		lienDeParenteDAO.save(cousinCousine);
-		LienDeParente aucun = new LienDeParente("aucun", 0F);
-		lienDeParenteDAO.save(aucun);
+		lienDeParenteDAO.save(new LienDeParente("frère/sœur", 0.5F));
+		lienDeParenteDAO.save(new LienDeParente("cousin/cousine", 0.25F));
+		lienDeParenteDAO.save(new LienDeParente("aucun", 0F));
 	}
 
 	private void ajouterPays() {

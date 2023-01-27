@@ -3,7 +3,6 @@ package fr.orsys.projet.plage.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.orsys.projet.plage.business.Pays;
@@ -16,10 +15,14 @@ import fr.orsys.projet.plage.service.PaysService;
 @Service
 public class PaysServiceImpl implements PaysService {
 
-	@Autowired
-	private PaysDAO paysDAO;
-	private PaysMapper paysMapper;
+	private final PaysDAO paysDAO;
+	private final PaysMapper paysMapper;	
 	
+	public PaysServiceImpl(PaysDAO paysDAO, PaysMapper paysMapper) {
+		this.paysDAO = paysDAO;
+		this.paysMapper = paysMapper;
+	}
+
 	@Override
 	public Pays ajouterPays(String code, String nom) {
 		if (paysDAO.existsById(code)) {

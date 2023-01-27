@@ -3,6 +3,8 @@ package fr.orsys.projet.plage.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import fr.orsys.projet.plage.business.File;
 import fr.orsys.projet.plage.business.Location;
 import fr.orsys.projet.plage.business.Parasol;
@@ -12,11 +14,18 @@ import fr.orsys.projet.plage.exception.ParasolExistantException;
 import fr.orsys.projet.plage.mapper.ParasolMapper;
 import fr.orsys.projet.plage.service.ParasolService;
 
+@Service
 public class ParasolServiceImpl implements ParasolService {
 
-	private ParasolDAO parasolDAO;
-	private ParasolMapper parasolMapper;
+	private final ParasolDAO parasolDAO;
+	private final ParasolMapper parasolMapper;
 	
+	
+	public ParasolServiceImpl(ParasolDAO parasolDAO, ParasolMapper parasolMapper) {
+		this.parasolDAO = parasolDAO;
+		this.parasolMapper = parasolMapper;
+	}
+
 	@Override
 	public Parasol ajouterParasol(byte numEmplacement) {
 		if (parasolDAO.existsByNumEmplacement(numEmplacement)) {
@@ -32,8 +41,7 @@ public class ParasolServiceImpl implements ParasolService {
 
 	@Override
 	public Parasol enregisterParasol(ParasolDTO parasolDTO) {
-		Parasol parasol = parasolMapper.toEntity(parasolDTO);
-		return parasolDAO.save(parasol);
+		return parasolDAO.save(parasolMapper.toEntity(parasolDTO));
 	}
 
 	@Override
