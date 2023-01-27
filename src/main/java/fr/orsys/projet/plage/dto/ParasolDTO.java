@@ -17,6 +17,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ParasolDTO {
 
+	Long id;
+	
 	byte numEmplacement;
 	
 	@ManyToMany(mappedBy="parasols")

@@ -5,9 +5,7 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import fr.orsys.projet.plage.business.File;
 import fr.orsys.projet.plage.business.Parasol;
-import fr.orsys.projet.plage.dto.FileDTO;
 import fr.orsys.projet.plage.dto.ParasolDTO;
 
 @Mapper(componentModel = "spring")
