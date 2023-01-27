@@ -13,7 +13,7 @@ import fr.orsys.projet.plage.dao.UtilisateurDAO;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
 import fr.orsys.projet.plage.dto.LocataireDTO;
 import fr.orsys.projet.plage.dto.UtilisateurDTO;
-import fr.orsys.projet.plage.exception.FileExistException;
+import fr.orsys.projet.plage.exception.FileExistantException;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.mapper.ConcessionnaireMapper;
 import fr.orsys.projet.plage.mapper.LocataireMapper;
@@ -23,17 +23,29 @@ import fr.orsys.projet.plage.service.UtilisateurService;
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
 
-	private UtilisateurDAO utilsateurDAO;
-	private UtilisateurMapper utilisateurMapper;
-	private ConcessionnaireDAO concessionnaireDAO;
-	private ConcessionnaireMapper concessionnaireMapper;
-	private LocataireDAO locataireDAO;
-	private LocataireMapper locataireMapper;
+	private final UtilisateurDAO utilsateurDAO;
+	private final UtilisateurMapper utilisateurMapper;
+	private final ConcessionnaireDAO concessionnaireDAO;
+	private final ConcessionnaireMapper concessionnaireMapper;
+	private final LocataireDAO locataireDAO;
+	private final LocataireMapper locataireMapper;
+
+	
+	public UtilisateurServiceImpl(UtilisateurDAO utilsateurDAO, UtilisateurMapper utilisateurMapper,
+			ConcessionnaireDAO concessionnaireDAO, ConcessionnaireMapper concessionnaireMapper,
+			LocataireDAO locataireDAO, LocataireMapper locataireMapper) {
+		this.utilsateurDAO = utilsateurDAO;
+		this.utilisateurMapper = utilisateurMapper;
+		this.concessionnaireDAO = concessionnaireDAO;
+		this.concessionnaireMapper = concessionnaireMapper;
+		this.locataireDAO = locataireDAO;
+		this.locataireMapper = locataireMapper;
+	}
 
 	@Override
 	public Concessionnaire ajouterConcessionnaire(String numeroDeTelephone) {
 		if (concessionnaireDAO.existsByNumeroDeTelephone(numeroDeTelephone)) {
-			throw new FileExistException("Ce concessionnaire est déjà présent en base");
+			throw new FileExistantException("Ce concessionnaire est déjà présent en base");
 		}
 		return concessionnaireDAO.save(new Concessionnaire(numeroDeTelephone));
 	}
@@ -106,9 +118,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@Override
-	public Locataire addLocataire(LocataireDTO locataireDTO) {
+	public LocataireDTO addLocataire(LocataireDTO locataireDTO) {
 		Locataire locataire = locataireMapper.toEntity(locataireDTO);
-		return locataireDAO.save(locataire);
+		return locataireMapper.toDto(locataireDAO.save(locataire));
 	}
 
 	@Override
