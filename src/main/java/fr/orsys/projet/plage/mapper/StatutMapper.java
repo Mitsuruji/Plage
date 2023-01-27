@@ -9,7 +9,7 @@ import fr.orsys.projet.plage.dto.StatutDTO;
 @Mapper(componentModel = "spring")
 public interface StatutMapper {
 	
-	PaysMapper INSTANCE = Mappers.getMapper( PaysMapper.class );
+	StatutMapper INSTANCE = Mappers.getMapper( StatutMapper.class );
 	
 	StatutDTO toDto(Statut statut); 
 

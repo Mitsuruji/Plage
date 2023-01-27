@@ -23,7 +23,7 @@ public class Locataire extends Utilisateur {
 	@Column(name = "date_heure_inscription")
 	private LocalDateTime dateHeureInscription;
 
-	@OneToMany(mappedBy = "locataire", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "locataire", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Location> locations;
 
 	@ManyToOne

@@ -19,3 +19,4 @@ public interface LocataireDAO extends JpaRepository<Locataire, Long> {
 	Locataire findByEmail(String email);
 
 }
+

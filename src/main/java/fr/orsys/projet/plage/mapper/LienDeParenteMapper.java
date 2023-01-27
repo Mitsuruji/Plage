@@ -11,7 +11,7 @@ public interface LienDeParenteMapper {
 
 	LienDeParenteMapper INSTANCE = Mappers.getMapper( LienDeParenteMapper.class );
 	
-	LienDeParenteDTO toDto(LienDeParente LienDeParente); 
+	LienDeParenteDTO toDto(LienDeParente lienDeParente); 
 
 	LienDeParente toEntity(LienDeParenteDTO lienDeParenteDTO);
 }

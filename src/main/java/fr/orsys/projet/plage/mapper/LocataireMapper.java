@@ -1,5 +1,7 @@
 package fr.orsys.projet.plage.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -14,4 +16,6 @@ public interface LocataireMapper {
     LocataireDTO toDto(Locataire locataire);
 
     Locataire toEntity(LocataireDTO locataireDTO);
+
+	List<LocataireDTO> toDtos(List<Locataire> locataires);
 }

@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import fr.orsys.projet.plage.business.Concessionnaire;
 import fr.orsys.projet.plage.business.Locataire;
-import fr.orsys.projet.plage.business.Utilisateur;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
 import fr.orsys.projet.plage.dto.LocataireDTO;
+import fr.orsys.projet.plage.dto.UtilisateurDTO;
 
 public interface UtilisateurService {
 
@@ -25,17 +25,17 @@ public interface UtilisateurService {
 	
 	Concessionnaire updateConcessionnaire(String numeroDeTelephone);
 
-	List<Locataire> getLocataires();
+	List<LocataireDTO> getLocataires();
 
-	Utilisateur getUtilisateurById(Long id);
+	UtilisateurDTO getUtilisateurById(Long id);
 
-	Utilisateur getUtilisateurByEmail(String email);
+	UtilisateurDTO getUtilisateurByEmail(String email);
 
-	List<Locataire> getLocatairesByPaysCode(String codePays);
+	List<LocataireDTO> getLocatairesByPaysCode(String codePays);
 
-	List<Locataire> getLocatairesDeParenteId(Long idLienDeParente);
+	List<LocataireDTO> getLocatairesDeParenteId(Long idLienDeParente);
 
-	List<Locataire> getLocatairesByDateHeureInscriptionDesc(); 
+	List<LocataireDTO> getLocatairesByDateHeureInscriptionDesc(); 
 
 	Locataire addLocataire(LocataireDTO locataireDTO);
 

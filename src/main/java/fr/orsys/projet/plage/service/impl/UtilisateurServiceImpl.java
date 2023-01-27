@@ -7,29 +7,29 @@ import org.springframework.stereotype.Service;
 
 import fr.orsys.projet.plage.business.Concessionnaire;
 import fr.orsys.projet.plage.business.Locataire;
-import fr.orsys.projet.plage.business.Utilisateur;
 import fr.orsys.projet.plage.dao.ConcessionnaireDAO;
 import fr.orsys.projet.plage.dao.LocataireDAO;
 import fr.orsys.projet.plage.dao.UtilisateurDAO;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
 import fr.orsys.projet.plage.dto.LocataireDTO;
+import fr.orsys.projet.plage.dto.UtilisateurDTO;
 import fr.orsys.projet.plage.exception.FileExistantException;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.mapper.ConcessionnaireMapper;
 import fr.orsys.projet.plage.mapper.LocataireMapper;
+import fr.orsys.projet.plage.mapper.UtilisateurMapper;
 import fr.orsys.projet.plage.service.UtilisateurService;
 
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
 
 	private UtilisateurDAO utilsateurDAO;
+	private UtilisateurMapper utilisateurMapper;
 	private ConcessionnaireDAO concessionnaireDAO;
 	private ConcessionnaireMapper concessionnaireMapper;
 	private LocataireDAO locataireDAO;
 	private LocataireMapper locataireMapper;
-	
-	
-	
+
 	@Override
 	public Concessionnaire ajouterConcessionnaire(String numeroDeTelephone) {
 		if (concessionnaireDAO.existsByNumeroDeTelephone(numeroDeTelephone)) {
@@ -75,40 +75,40 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@Override
-	public List<Locataire> getLocataires() {
-		return locataireDAO.findAll();
+	public List<LocataireDTO> getLocataires() {
+		return locataireMapper.toDtos(locataireDAO.findAll());
 	}
 
 	@Override
-	public Utilisateur getUtilisateurById(Long id) {
-		return utilsateurDAO.findById(id)
-				.orElseThrow(() -> new UtilisateurNotFoundException("Utilisateur d'identifiant " + id + " inexistant"));
+	public UtilisateurDTO getUtilisateurById(Long id) {
+		return utilisateurMapper.toDto(utilsateurDAO.findById(id)
+				.orElseThrow(() -> new UtilisateurNotFoundException("Utilisateur d'identifiant " + id + " inexistant")));
 	}
 
 	@Override
-	public Utilisateur getUtilisateurByEmail(String email) {
-		return locataireDAO.findByEmail(email);
+	public UtilisateurDTO getUtilisateurByEmail(String email) {
+		return utilisateurMapper.toDto(locataireDAO.findByEmail(email));
 	}
 
 	@Override
-	public List<Locataire> getLocatairesByPaysCode(String codePays) {
-		return locataireDAO.findByPaysCode(codePays);
+	public List<LocataireDTO> getLocatairesByPaysCode(String codePays) {
+		return locataireMapper.toDtos(locataireDAO.findByPaysCode(codePays));
 	}
 
 	@Override
-	public List<Locataire> getLocatairesDeParenteId(Long idLienDeParente) {
-		return locataireDAO.findByLienDeParenteId(idLienDeParente);
+	public List<LocataireDTO> getLocatairesDeParenteId(Long idLienDeParente) {
+		return locataireMapper.toDtos(locataireDAO.findByLienDeParenteId(idLienDeParente));
 	}
 
 	@Override
-	public List<Locataire> getLocatairesByDateHeureInscriptionDesc() {
-		return locataireDAO.findAllByOrderByDateHeureInscriptionDesc();
+	public List<LocataireDTO> getLocatairesByDateHeureInscriptionDesc() {
+		return locataireMapper.toDtos(locataireDAO.findAllByOrderByDateHeureInscriptionDesc());
 	}
 
 	@Override
 	public Locataire addLocataire(LocataireDTO locataireDTO) {
-	    Locataire locataire = locataireMapper.toEntity(locataireDTO);
-	    return locataireDAO.save(locataire);
+		Locataire locataire = locataireMapper.toEntity(locataireDTO);
+		return locataireDAO.save(locataire);
 	}
 
 	@Override

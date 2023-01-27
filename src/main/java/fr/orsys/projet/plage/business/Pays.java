@@ -30,6 +30,6 @@ public class Pays {
 	@NonNull
 	private String nom;
 	
-	@OneToMany(mappedBy="pays", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="pays", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Locataire> locataires;
 }
