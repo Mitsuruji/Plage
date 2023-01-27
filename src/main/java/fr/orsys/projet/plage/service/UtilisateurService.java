@@ -11,17 +11,17 @@ import fr.orsys.projet.plage.dto.UtilisateurDTO;
 
 public interface UtilisateurService {
 
-	Concessionnaire ajouterConcessionnaire(String numeroDeTelephone);
+	Concessionnaire addConcessionnaire(String numeroDeTelephone);
 	
-	Concessionnaire enregisterConcessionnaire(Concessionnaire concessionnaire);
+	Concessionnaire saveConcessionnaire(Concessionnaire concessionnaire);
 	
-	Concessionnaire enregisterConcessionnaire(ConcessionnaireDTO concessionnaireDTO);
+	Concessionnaire saveConcessionnaire(ConcessionnaireDTO concessionnaireDTO);
 	
-	List<Concessionnaire> recupererConcessionnaires();
+	List<Concessionnaire> getConcessionnaires();
 	
-	Optional<Concessionnaire> recupererConcessionnaire(Long id);
+	Optional<Concessionnaire> getConcessionnaire(Long id);
 	
-	Concessionnaire recupererConcessionnaire(String numeroDeTelephone);
+	Concessionnaire getConcessionnaire(String numeroDeTelephone);
 	
 	Concessionnaire updateConcessionnaire(String numeroDeTelephone);
 

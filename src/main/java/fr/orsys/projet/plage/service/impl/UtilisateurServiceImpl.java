@@ -13,7 +13,7 @@ import fr.orsys.projet.plage.dao.UtilisateurDAO;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
 import fr.orsys.projet.plage.dto.LocataireDTO;
 import fr.orsys.projet.plage.dto.UtilisateurDTO;
-import fr.orsys.projet.plage.exception.FileExistantException;
+import fr.orsys.projet.plage.exception.ConcessionnaireExistException;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.mapper.ConcessionnaireMapper;
 import fr.orsys.projet.plage.mapper.LocataireMapper;
@@ -43,36 +43,36 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@Override
-	public Concessionnaire ajouterConcessionnaire(String numeroDeTelephone) {
+	public Concessionnaire addConcessionnaire(String numeroDeTelephone) {
 		if (concessionnaireDAO.existsByNumeroDeTelephone(numeroDeTelephone)) {
-			throw new FileExistantException("Ce concessionnaire est déjà présent en base");
+			throw new ConcessionnaireExistException("Ce concessionnaire est déjà présent en base");
 		}
 		return concessionnaireDAO.save(new Concessionnaire(numeroDeTelephone));
 	}
 
 	@Override
-	public Concessionnaire enregisterConcessionnaire(Concessionnaire concessionnaire) {
+	public Concessionnaire saveConcessionnaire(Concessionnaire concessionnaire) {
 		return concessionnaireDAO.save(concessionnaire);
 	}
 
 	@Override
-	public Concessionnaire enregisterConcessionnaire(ConcessionnaireDTO concessionnaireDTO) {
+	public Concessionnaire saveConcessionnaire(ConcessionnaireDTO concessionnaireDTO) {
 		Concessionnaire concessionnaire = concessionnaireMapper.toEntity(concessionnaireDTO);
-		return enregisterConcessionnaire(concessionnaire);
+		return saveConcessionnaire(concessionnaire);
 	}
 
 	@Override
-	public List<Concessionnaire> recupererConcessionnaires() {
+	public List<Concessionnaire> getConcessionnaires() {
 		return concessionnaireDAO.findAll();
 	}
 
 	@Override
-	public Optional<Concessionnaire> recupererConcessionnaire(Long id) {
+	public Optional<Concessionnaire> getConcessionnaire(Long id) {
 		return concessionnaireDAO.findById(id);
 	}
 
 	@Override
-	public Concessionnaire recupererConcessionnaire(String numeroDeTelephone) {
+	public Concessionnaire getConcessionnaire(String numeroDeTelephone) {
 		return concessionnaireDAO.findByNumeroDeTelephone(numeroDeTelephone);
 	}
 
@@ -81,7 +81,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		if (!concessionnaireDAO.existsByNumeroDeTelephone(numeroDeTelephone)) {
 			throw new UtilisateurNotFoundException("Ce concessionnaire n'existe pas en base");
 		}
-		Concessionnaire concessionnaire = recupererConcessionnaire(numeroDeTelephone);
+		Concessionnaire concessionnaire = getConcessionnaire(numeroDeTelephone);
 		concessionnaire.setNumeroDeTelephone(numeroDeTelephone);
 		return concessionnaireDAO.save(concessionnaire);
 	}
