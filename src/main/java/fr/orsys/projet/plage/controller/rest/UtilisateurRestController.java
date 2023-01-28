@@ -22,7 +22,7 @@ public class UtilisateurRestController {
 	private JwtGeneratorService jwtGenerator;
 
 	@PostMapping("/inscription")
-	public ResponseEntity<Object> postUser(@RequestBody UtilisateurDTO utilisateurDTO) {
+	public ResponseEntity<Object> postUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
 		try {
 			utilisateurService.saveUtilisateur(utilisateurDTO);
 			return new ResponseEntity<>(utilisateurDTO, HttpStatus.CREATED);
@@ -32,7 +32,7 @@ public class UtilisateurRestController {
 	}
 
 	@PostMapping("/authentification")
-	public ResponseEntity<Object> loginUser(@RequestBody UtilisateurDTO utilisateurDTO) {
+	public ResponseEntity<Object> loginUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
 		try {
 			if (utilisateurDTO.getEmail() == null || utilisateurDTO.getMotDePasse() == null) {
 				throw new UtilisateurNotFoundException("Email ou mot de passe vide");
