@@ -34,11 +34,10 @@ public class File {
 	@PositiveOrZero
 	private double prixJournalier;
 
-	@OneToMany(mappedBy = "file", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "file", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Parasol> parasols;
 
-	public File(@Positive byte numero, @PositiveOrZero double prixJournalier) {
-		super();
+	public File(byte numero, double prixJournalier) {
 		this.numero = numero;
 		this.prixJournalier = prixJournalier;
 	}

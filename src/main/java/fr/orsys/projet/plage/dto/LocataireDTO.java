@@ -16,8 +16,8 @@ import lombok.experimental.FieldDefaults;
 public class LocataireDTO  extends UtilisateurDTO{
 
 	LocalDateTime dateHeureInscription;
-	LienDeParenteDTO lienDeParente;
 	List<LocationDTO> locations;
 	PaysDTO pays;
+	LienDeParenteDTO lienDeParente;
 
 }

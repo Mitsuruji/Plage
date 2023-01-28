@@ -47,7 +47,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		for (int i = 1; i <= 8; i++) {
 			File file = new File();
 			file.setNumero((byte) i);
-			file.setPrixJournalier(180D - 10 * i);
+			file.setPrixJournalier(180d - 10 * i);
 			fileDAO.save(file);
 		}
 	}
@@ -64,9 +64,9 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	}
 
 	private void ajouterLiensDeParente() {
-		lienDeParenteDAO.save(new LienDeParente("frère/sœur", 0.5F));
-		lienDeParenteDAO.save(new LienDeParente("cousin/cousine", 0.25F));
-		lienDeParenteDAO.save(new LienDeParente("aucun", 0F));
+		lienDeParenteDAO.save(new LienDeParente("frère/sœur", 0.5f));
+		lienDeParenteDAO.save(new LienDeParente("cousin/cousine", 0.25f));
+		lienDeParenteDAO.save(new LienDeParente("aucun", 0f));
 	}
 
 	private void ajouterPays() {

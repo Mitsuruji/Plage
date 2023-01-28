@@ -11,11 +11,11 @@ import fr.orsys.projet.plage.dto.LocataireDTO;
 @Mapper(componentModel = "spring")
 public interface LocataireMapper {
 
-    LocataireMapper INSTANCE = Mappers.getMapper(LocataireMapper.class);
+	LocataireMapper INSTANCE = Mappers.getMapper(LocataireMapper.class);
 
-    LocataireDTO toDto(Locataire locataire);
+	LocataireDTO toDto(Locataire locataire);
 
-    Locataire toEntity(LocataireDTO locataireDTO);
+	Locataire toEntity(LocataireDTO locataireDTO);
 
 	List<LocataireDTO> toDtos(List<Locataire> locataires);
 }

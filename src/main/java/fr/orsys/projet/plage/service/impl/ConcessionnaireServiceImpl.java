@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import fr.orsys.projet.plage.business.Concessionnaire;
 import fr.orsys.projet.plage.dao.ConcessionnaireDAO;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
+import fr.orsys.projet.plage.exception.ConcessionnaireExistException;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.mapper.ConcessionnaireMapper;
 import fr.orsys.projet.plage.service.ConcessionnaireService;

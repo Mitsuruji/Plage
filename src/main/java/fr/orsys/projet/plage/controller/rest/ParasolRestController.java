@@ -1,7 +1,6 @@
 package fr.orsys.projet.plage.controller.rest;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -24,28 +23,28 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/")
 public class ParasolRestController {
 
-private ParasolService parasolService;
-	
+	private ParasolService parasolService;
+
 	@GetMapping("parasols")
 	public List<ParasolDTO> getParasols() {
 		return parasolService.getParasolsDTO();
 	}
-	
+
 	@PostMapping("parasols/{numEmplacement}")
-	@ResponseStatus(code=HttpStatus.CREATED)
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public Parasol postParasol(byte numEmplacement) {
 		return parasolService.addParasol(numEmplacement);
 	}
-	
+
 	@ExceptionHandler(fr.orsys.projet.plage.exception.ParasolExistException.class)
-	@ResponseStatus(code=HttpStatus.CONFLICT)
+	@ResponseStatus(code = HttpStatus.CONFLICT)
 	public String processParasolExist(Exception exception) {
 		return exception.getMessage();
 	}
-	
+
 	@ExceptionHandler(javax.validation.ConstraintViolationException.class)
-    @ResponseStatus(code=HttpStatus.UNPROCESSABLE_ENTITY)
-    public List<String> processInvalidData(ConstraintViolationException exception) {
-        return exception.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
-    }
+	@ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
+	public List<String> processInvalidData(ConstraintViolationException exception) {
+		return exception.getConstraintViolations().stream().map(ConstraintViolation::getMessage).toList();
+	}
 }

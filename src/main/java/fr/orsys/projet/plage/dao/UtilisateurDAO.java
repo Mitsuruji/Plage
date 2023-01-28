@@ -6,6 +6,6 @@ import fr.orsys.projet.plage.business.Utilisateur;
 
 public interface UtilisateurDAO extends JpaRepository<Utilisateur, Long> {
 
-	Utilisateur findByEmail(String email);
+	Utilisateur findByEmailAndMotDePasse(String email, String motDePasse);
 
 }

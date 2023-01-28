@@ -21,11 +21,11 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("locataire")
+@RequestMapping("/api/locataire")
 public class LocataireRestController {
 
-	private final LocataireService locataireService;
-	private final LocationService locationService;
+	private LocataireService locataireService;
+	private LocationService locationService;
 
 	//feature 10
 	@PostMapping("inscription")
@@ -49,8 +49,8 @@ public class LocataireRestController {
 	}
 
 	//feature 13
-	@DeleteMapping("suppression-client/{id}")
-	public void suppressionClient(@PathVariable Long id) {
+	@DeleteMapping("suppression-locataire/{id}")
+	public void suppressionLocataire(@PathVariable Long id) {
 		locataireService.deleteLocataire(id);
 	}
 

@@ -18,14 +18,24 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public UtilisateurDTO getUtilisateurById(Long id) {
-		return utilisateurMapper.toDto(utilsateurDAO.findById(id)
-				.orElseThrow(() -> new UtilisateurNotFoundException("Utilisateur d'identifiant " + id + " inexistant")));
+		return utilisateurMapper.toDto(utilsateurDAO.findById(id).orElseThrow(
+				() -> new UtilisateurNotFoundException("Utilisateur d'identifiant " + id + " inexistant")));
 	}
 
 	@Override
-	public UtilisateurDTO getUtilisateurByEmail(String email) {
-		return utilisateurMapper.toDto(utilsateurDAO.findByEmail(email));
+	public UtilisateurDTO getUtilisateurByEmailAndMotDePasse(String email, String motDePasse) {
+		UtilisateurDTO utilisateurDTO = utilisateurMapper
+				.toDto(utilsateurDAO.findByEmailAndMotDePasse(email, motDePasse));
+		if (utilisateurDTO == null) {
+			throw new UtilisateurNotFoundException("Email et mot de passe invalides");
+		}
+		return utilisateurDTO;
 	}
 
+	@Override
+	public void saveUtilisateur(UtilisateurDTO utilisateurDTO) {
+		utilsateurDAO.save(utilisateurMapper.toEntity(utilisateurDTO));
+
+	}
 
 }

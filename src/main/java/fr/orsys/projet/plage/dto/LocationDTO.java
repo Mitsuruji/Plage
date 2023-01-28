@@ -18,7 +18,7 @@ public class LocationDTO {
 	Long id;
 	LocalDateTime dateHeureDebut;
 	LocalDateTime dateHeureFin;
-	Double montantARreglerEnEuros;
+	double montantAReglerEnEuros;
 	String remarques;
 	LocataireDTO locataire;
 	StatutDTO statut;

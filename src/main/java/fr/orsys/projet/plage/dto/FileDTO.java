@@ -2,10 +2,6 @@ package fr.orsys.projet.plage.dto;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +14,12 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FileDTO {
 
+	Long id;
+	
 	byte numero;
 	
 	double prixJournalier;
 	
-	@OneToMany(mappedBy="fileDTO", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	List<ParasolDTO> parasolsDTO;
+	List<ParasolDTO> parasols;
 	
 }

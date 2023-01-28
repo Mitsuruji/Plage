@@ -21,23 +21,21 @@ import lombok.NoArgsConstructor;
 @Table(name = "parasols")
 public class Parasol {
 
-	public Parasol(byte numEmplacement) {
-		this.numEmplacement = numEmplacement;
-	}
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "num_emplacement")
 	private byte numEmplacement;
-	
-	@ManyToMany(mappedBy="parasols")
+
+	@ManyToMany(mappedBy = "parasols")
 	private List<Location> locations;
-	
+
 	@ManyToOne
 	@NotNull
 	private File file;
-	
-	
+
+	public Parasol(byte numEmplacement) {
+		this.numEmplacement = numEmplacement;
+	}
 }

@@ -2,9 +2,6 @@ package fr.orsys.projet.plage.dto;
 
 import java.util.List;
 
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +18,7 @@ public class ParasolDTO {
 	
 	byte numEmplacement;
 	
-	@ManyToMany(mappedBy="parasols")
-	List<LocationDTO> locationsDTO;
+	List<LocationDTO> locations;
 	
-	@ManyToOne
-	FileDTO fileDTO;
+	FileDTO file;
 }

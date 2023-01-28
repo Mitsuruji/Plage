@@ -23,8 +23,6 @@ public class LocataireServiceImpl implements LocataireService {
 		return locataireMapper.toDtos(locataireDAO.findAll());
 	}
 
-	
-
 	@Override
 	public List<LocataireDTO> getLocatairesByPaysCode(String codePays) {
 		return locataireMapper.toDtos(locataireDAO.findByPaysCode(codePays));
@@ -50,7 +48,5 @@ public class LocataireServiceImpl implements LocataireService {
 	public void deleteLocataire(Long id) {
 		locataireDAO.deleteById(id);
 	}
-
-
 
 }
