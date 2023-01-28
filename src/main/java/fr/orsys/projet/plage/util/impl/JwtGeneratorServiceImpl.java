@@ -21,6 +21,7 @@ public class JwtGeneratorServiceImpl implements JwtGeneratorService{
 	  @Value("${app.jwttoken.message}")
 	  private String message;
 	  
+	  
 	  SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	  
 	  @Override
