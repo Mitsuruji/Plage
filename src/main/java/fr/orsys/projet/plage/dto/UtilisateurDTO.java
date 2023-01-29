@@ -7,16 +7,22 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@ToString
+@FieldDefaults(level = AccessLevel.PROTECTED)
+@JsonTypeInfo(
+		use = JsonTypeInfo.Id.NAME,
+		include = JsonTypeInfo.As.PROPERTY,
+		property = "type"
+		)
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = LocataireDTO.class, name = "locataire"),
-    @JsonSubTypes.Type(value = ConcessionnaireDTO.class, name = "concessionnaire")})
+    @JsonSubTypes.Type(value = LocataireDTO.class, name = "Locataire"),
+    @JsonSubTypes.Type(value = ConcessionnaireDTO.class, name = "Concessionnaire")})
 public abstract class UtilisateurDTO {	
 	String nom;
 	String prenom;

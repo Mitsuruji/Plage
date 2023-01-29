@@ -41,7 +41,7 @@ public class UtilisateurRestController {
 			if (userData == null) {
 				throw new UtilisateurNotFoundException("Email ou mot de passe invalides");
 			}
-			return new ResponseEntity<>(jwtGenerator.generateToken(utilisateurDTO), HttpStatus.OK);
+			return new ResponseEntity<>(jwtGenerator.generateToken(userData), HttpStatus.OK);
 		} catch (UtilisateurNotFoundException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
 		}
