@@ -31,7 +31,7 @@ public abstract class Utilisateur {
 
 	@Email
 	@NotBlank
-    @Column(name = "email")
+    @Column(name = "email", unique= true)
 	protected String email;
 
 	@JsonProperty(access = Access.WRITE_ONLY)
