@@ -15,11 +15,12 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = LocataireDTO.class, name = "locataire"),
-    @JsonSubTypes.Type(value = ConcessionnaireDTO.class, name = "concessionnaire")})
+    @JsonSubTypes.Type(value = LocataireDTO.class, name = "Locataire"),
+    @JsonSubTypes.Type(value = ConcessionnaireDTO.class, name = "Concessionnaire")})
 public abstract class UtilisateurDTO {	
 	String nom;
 	String prenom;
 	String email;
-	String motDePasse;
+	String motDePasse;	
+	String token;
 }

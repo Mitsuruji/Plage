@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public abstract class Utilisateur {
-  
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
