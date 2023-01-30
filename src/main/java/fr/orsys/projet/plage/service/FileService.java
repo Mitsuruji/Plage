@@ -9,7 +9,7 @@ import fr.orsys.projet.plage.dto.FileDTO;
 
 public interface FileService {
 
-	File addFile(byte numero, double prixJournalier);
+	File addFile(Byte numero, Double prixJournalier);
 	
 	File saveFile(File file);
 	
@@ -21,10 +21,10 @@ public interface FileService {
 	
 	Optional<File> getFile(Long id);
 	
-	File getFile(byte numero);
+	File getFile(Byte numero);
 	
 	List<Parasol> getParasolesByFile(File file);
 	
-	File updateFile(byte numero, double prixJournalier);
+	File updateFile(Byte numero, Double prixJournalier); 
 
 }

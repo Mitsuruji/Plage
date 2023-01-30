@@ -1,17 +1,47 @@
 <div class="container">
-    <div *ngIf="showError" class="alert alert-danger">Login et/ou Mot de passe invalides</div>
-    <form #f="ngForm" (ngSubmit)="submitHandler(f)">
-        <label for="identifiant">Login</label>
-        <input #inpLogin="ngModel" ngModel required email type="text" class="form-control" id="identifiant"
-            name="email">
+  <div *ngIf="showError" class="alert alert-danger">
+    Login et/ou Mot de passe invalides
+  </div>
+  <form #f="ngForm" (ngSubmit)="submitHandler(f)">
+    <label for="identifiant">Login</label>
+    <input
+      #inpLogin="ngModel"
+      ngModel
+      required
+      email
+      type="text"
+      class="form-control"
+      id="identifiant"
+      name="email"
+    />
 
-        <div *ngIf="!inpLogin.valid && inpLogin.touched" class="alert alert-danger">Ce champ est obligatoire et est une
-            adresse mail</div>
+    <div *ngIf="!inpLogin.valid && inpLogin.touched" class="alert alert-danger">
+      Ce champ est obligatoire et est une adresse mail
+    </div>
 
-        <label for="mdp">Mot de passe</label>
-        <input ngModel required minlength="4" name="password" type="text" class="form-control" id="mdp">
+    <label for="mdp">Mot de passe</label>
+    <input
+      ngModel
+      required
+      minlength="8"
+      name="password"
+      type="text"
+      class="form-control"
+      id="mdp"
+    />
 
-        <br>
-        <button [disabled]="f.invalid" type="submit" class="btn btn-primary">Se connecter</button>
-    </form>
+    <br />
+    <div class="d-flex justify-content-between">
+      <button [disabled]="f.invalid" type="submit" class="btn btn-primary">
+        Se connecter
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [routerLink]="['/client/register']"
+      >
+        S'inscrire
+      </button>
+    </div>
+  </form>
 </div>

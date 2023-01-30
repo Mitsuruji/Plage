@@ -23,7 +23,7 @@ public class FileServiceImpl implements FileService{
 	private final FileMapper fileMapper;
 	
 	@Override
-	public File addFile(byte numero, double prixJournalier) {
+	public File addFile(Byte numero, Double prixJournalier) {
 		if (fileDAO.existsByNumero(numero)) {
 			throw new FileExistException("Cette file est déjà présent en base");
 		}
@@ -57,7 +57,7 @@ public class FileServiceImpl implements FileService{
 	}
 
 	@Override
-	public File getFile(byte numero) {
+	public File getFile(Byte numero) {
 		return fileDAO.findByNumero(numero);
 	}
 
@@ -67,7 +67,7 @@ public class FileServiceImpl implements FileService{
 	}
 	
 	@Override
-	public File updateFile(byte numero, double prixJournalier) {
+	public File updateFile(Byte numero, Double prixJournalier) {
 		if (!fileDAO.existsByNumero(numero)) {
 			throw new FileNotFoundException("Cette file n'existe pas en base");
 		}

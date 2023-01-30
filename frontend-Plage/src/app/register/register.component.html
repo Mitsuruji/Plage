@@ -1,0 +1,65 @@
+<div class="container">
+  <h2>Inscription</h2>
+  <form #registrationForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nom"
+        name="nom"
+        ngModel
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="prenom"
+        name="prenom"
+        ngModel
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        ngModel
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="pays">Pays de résidence</label>
+      <select class="form-control" id="pays" name="pays" ngModel required>
+        <option *ngFor="let pays of listPays">{{ pays }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="lien">Lien de parenté</label>
+      <select class="form-control" id="lien" name="lien" ngModel required>
+        <option value="Frère/Sœur">Frère/Sœur</option>
+        <option value="Cousin/Cousine">Cousin/Cousine</option>
+        <option value="Aucun">Aucun</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="motDePasse">Mot de passe</label>
+      <input
+        type="password"
+        class="form-control"
+        id="motDePasse"
+        name="motDePasse"
+        ngModel
+        required
+        minlength="8"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+  </form>
+</div>

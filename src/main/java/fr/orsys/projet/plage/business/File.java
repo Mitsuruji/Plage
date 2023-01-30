@@ -16,10 +16,13 @@ import javax.validation.constraints.PositiveOrZero;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @Data
+@RequiredArgsConstructor
 @Table(name = "files")
 public class File {
 
@@ -28,18 +31,15 @@ public class File {
 	private Long id;
 
 	@Positive
-	private byte numero;
+	@NonNull
+	private Byte numero;
 
 	@Column(name = "prix_journalier")
 	@PositiveOrZero
-	private double prixJournalier;
+	@NonNull
+	private Double prixJournalier;
 
 	@OneToMany(mappedBy = "file", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Parasol> parasols;
-
-	public File(byte numero, double prixJournalier) {
-		this.numero = numero;
-		this.prixJournalier = prixJournalier;
-	}
 
 }

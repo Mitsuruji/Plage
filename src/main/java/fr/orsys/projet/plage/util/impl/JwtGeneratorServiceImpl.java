@@ -38,5 +38,22 @@ public class JwtGeneratorServiceImpl implements JwtGeneratorService {
 		jwtTokenGen.put("message", message);
 		return jwtTokenGen;
 	}
+	
+//	@Override
+//	public Map<String, String> generateToken(UtilisateurDTO utilisateurDTO) {
+//	    String jwtToken = "";
+//	    Date currentDate = new Date();
+//	    Date expirationTime = new Date(currentDate.getTime() + (30 * 60 * 1000));
+//	    byte[] apiKeySecretBytes = new byte[32];
+//	    secureRandom.nextBytes(apiKeySecretBytes);
+//	    Key signingKey = new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS256.getJcaName());
+//
+//	    jwtToken = Jwts.builder().setSubject(utilisateurDTO.getEmail()).setIssuedAt(currentDate)
+//	            .setExpiration(expirationTime).signWith(signingKey, SignatureAlgorithm.HS256).compact();
+//	    Map<String, String> jwtTokenGen = new HashMap<>();
+//	    jwtTokenGen.put("token", jwtToken);
+//	    jwtTokenGen.put("message", message);
+//	    return jwtTokenGen;
+//	}
 
 }

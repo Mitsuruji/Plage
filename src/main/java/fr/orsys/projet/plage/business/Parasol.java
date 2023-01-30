@@ -14,10 +14,13 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @Data
+@RequiredArgsConstructor
 @Table(name = "parasols")
 public class Parasol {
 
@@ -25,17 +28,15 @@ public class Parasol {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NonNull
 	@Column(name = "num_emplacement")
-	private byte numEmplacement;
-
-	@ManyToMany(mappedBy = "parasols")
-	private List<Location> locations;
+	private Byte numEmplacement;
 
 	@ManyToOne
 	@NotNull
 	private File file;
 
-	public Parasol(byte numEmplacement) {
-		this.numEmplacement = numEmplacement;
-	}
+	@ManyToMany(mappedBy = "parasols")
+	private List<Location> locations;
+
 }

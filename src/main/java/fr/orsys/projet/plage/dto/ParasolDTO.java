@@ -16,7 +16,7 @@ public class ParasolDTO {
 
 	Long id;
 	
-	byte numEmplacement;
+	Byte numEmplacement;
 	
 	List<LocationDTO> locations;
 	

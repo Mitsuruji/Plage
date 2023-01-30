@@ -14,5 +14,5 @@ public class LienDeParenteDTO {
 
 	Long id;
 	String nom;
-	float coefficient;
+	Float coefficient;
 }
