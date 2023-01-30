@@ -1,5 +1,8 @@
 package fr.orsys.projet.plage.service.impl;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.orsys.projet.plage.dao.UtilisateurDAO;
@@ -15,6 +18,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	private final UtilisateurDAO utilsateurDAO;
 	private final UtilisateurMapper utilisateurMapper;
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public UtilisateurDTO getUtilisateurById(Long id) {
@@ -24,12 +28,16 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public UtilisateurDTO getUtilisateurByEmailAndMotDePasse(String email, String motDePasse) {
-		UtilisateurDTO utilisateurDTO = utilisateurMapper
-				.toDto(utilsateurDAO.findByEmailAndMotDePasse(email, motDePasse));
-		if (utilisateurDTO == null) {
+		UtilisateurDTO utilisateurDTO = null;
+		boolean motDePasseEquals = passwordEncoder.matches(motDePasse, utilsateurDAO.findByEmail(email).get().getMotDePasse());
+		if(motDePasseEquals) {
+			utilisateurDTO = utilisateurMapper
+					.toDto(utilsateurDAO.findByEmail(email).get());
+			return utilisateurDTO;
+		} else {
 			throw new UtilisateurNotFoundException("Email et mot de passe invalides");
 		}
-		return utilisateurDTO;
+		
 	}
 
 	@Override

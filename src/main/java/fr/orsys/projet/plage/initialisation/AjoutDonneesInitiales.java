@@ -4,7 +4,10 @@ import java.util.Arrays;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import fr.orsys.projet.plage.business.Concessionnaire;
@@ -32,6 +35,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final StatutDAO statutDAO;
 	private final ConcessionnaireDAO concessionnaireDAO;
 
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
 	@Transactional
 	public void run(String... args) throws Exception {
@@ -89,7 +94,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		Concessionnaire concessionnaire = new Concessionnaire();
 		concessionnaire.setEmail("peppe@orsys.fr");
 		concessionnaire.setNumeroDeTelephone("+3912345678");
-		concessionnaire.setMotDePasse("12345678");
+		concessionnaire.setMotDePasse(passwordEncoder.encode("12345678"));
 		concessionnaireDAO.save(concessionnaire);
 	}
 

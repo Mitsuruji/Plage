@@ -17,7 +17,7 @@ export class LoginComponent {
   ) {}
 
   submitHandler(f: any) {
-    f.value['type'] = 'concessionnaire';
+    f.value['type'] = 'Concessionnaire';
     console.log(f.value);
     this.authService.connect(f.value).subscribe({
       next: (response: any) => {
