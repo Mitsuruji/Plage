@@ -4,21 +4,21 @@ import java.util.Arrays;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import fr.orsys.projet.plage.business.Concessionnaire;
 import fr.orsys.projet.plage.business.File;
 import fr.orsys.projet.plage.business.LienDeParente;
+import fr.orsys.projet.plage.business.Locataire;
 import fr.orsys.projet.plage.business.Parasol;
 import fr.orsys.projet.plage.business.Pays;
 import fr.orsys.projet.plage.business.Statut;
 import fr.orsys.projet.plage.dao.ConcessionnaireDAO;
 import fr.orsys.projet.plage.dao.FileDAO;
 import fr.orsys.projet.plage.dao.LienDeParenteDAO;
+import fr.orsys.projet.plage.dao.LocataireDAO;
 import fr.orsys.projet.plage.dao.ParasolDAO;
 import fr.orsys.projet.plage.dao.PaysDAO;
 import fr.orsys.projet.plage.dao.StatutDAO;
@@ -34,6 +34,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final PaysDAO paysDAO;
 	private final StatutDAO statutDAO;
 	private final ConcessionnaireDAO concessionnaireDAO;
+	private final LocataireDAO locataireDAO;
 
 	private PasswordEncoder passwordEncoder;
 	
@@ -46,6 +47,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		ajouterPays();
 		ajouterStatuts();
 		ajouterConcessionnaire();
+		ajouterLocataire();
 	}
 
 	private void ajouterFiles() {
@@ -96,6 +98,13 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		concessionnaire.setNumeroDeTelephone("+3912345678");
 		concessionnaire.setMotDePasse(passwordEncoder.encode("12345678"));
 		concessionnaireDAO.save(concessionnaire);
+	}
+	
+	private void ajouterLocataire() {
+		Locataire locataire = new Locataire();
+		locataire.setEmail("salih@orsys.fr");
+		locataire.setMotDePasse(passwordEncoder.encode("12345678"));
+		locataireDAO.save(locataire);
 	}
 
 }

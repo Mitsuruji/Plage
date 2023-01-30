@@ -16,9 +16,9 @@ public class FileDTO {
 
 	Long id;
 	
-	byte numero;
+	Byte numero;
 	
-	double prixJournalier;
+	Double prixJournalier;
 	
 	List<ParasolDTO> parasols;
 	

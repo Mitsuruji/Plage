@@ -11,12 +11,12 @@ export class ReservationsComponent {
 
   constructor(private locationService: LocationService) {}
 
-  ngOnInit() {
-    this.locationService.getLocationsByLocataire().subscribe((locations) => {
-      this.locations = locations.filter(
-        (location) =>
-          location.statut === 'VALIDE' || location.statut === 'ACCEPTE'
-      );
-    });
-  }
+  // ngOnInit() {
+  //   this.locationService.getLocationsByLocataire().subscribe((locations) => {
+  //     this.locations = locations.filter(
+  //       (location) =>
+  //         location.statut === 'VALIDE' || location.statut === 'ACCEPTE'
+  //     );
+  //   });
+  // }
 }
