@@ -46,14 +46,14 @@ public class UtilisateurRestController {
 	}
 
 	@PostMapping("/authentification")
-	public ResponseEntity<Object> loginUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO, HttpServletRequest request) {
-		request.getCharacterEncoding();
+	public ResponseEntity<Object> loginUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
+		System.out.println(utilisateurDTO);
 		try {
 			if (utilisateurDTO.getEmail() == null || utilisateurDTO.getMotDePasse() == null) {
 				throw new UtilisateurNotFoundException("Email ou mot de passe vide");
 			}
 			UtilisateurDTO userData = utilisateurService.getUtilisateurByEmailAndMotDePasse(utilisateurDTO.getEmail(),
-					utilisateurDTO.getMotDePasse());
+					utilisateurDTO.getMotDePasse(), utilisateurDTO.getClass().getSimpleName());
 
 			if (userData == null) {
 				throw new UtilisateurNotFoundException("Email ou mot de passe invalides");

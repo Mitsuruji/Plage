@@ -6,7 +6,7 @@ public interface UtilisateurService {
 
 	UtilisateurDTO getUtilisateurById(Long id);
 
-	UtilisateurDTO getUtilisateurByEmailAndMotDePasse(String email, String motDePasse);
+	UtilisateurDTO getUtilisateurByEmailAndMotDePasse(String email, String motDePasse, String className);
 	
 	void saveUtilisateur(UtilisateurDTO utilisateurDTO);
 }

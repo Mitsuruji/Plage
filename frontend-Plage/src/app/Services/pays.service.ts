@@ -7,7 +7,7 @@ import { Pays } from '../model/pays.model';
   providedIn: 'root',
 })
 export class PaysService {
-  private api = 'https://restcountries.com/v2/all?fields=name;alpha2Code;flag';
+  private api = 'https://restcountries.com/v2/all?fields=alpha2Code,name,flags';
 
   constructor(private http: HttpClient) {}
 }

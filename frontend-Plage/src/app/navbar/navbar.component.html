@@ -3,10 +3,14 @@
         <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Home</a>
     </li>
 
-    <li class="nav-item">
+    <li *ngIf="authSer.isConnected()" class="nav-item">
+        <a class="nav-link" routerLink="/concessionnaire/locations" routerLinkActive="active">Mes locations</a>
+    </li>
+
+    <li *ngIf="!authSer.isConnected()" class="nav-item">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="authSer.isConnected()" class="nav-item">
         <a class="nav-link">Logout</a>
     </li>
 </ul>

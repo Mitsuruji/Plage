@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGuardGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -20,7 +20,8 @@ export class LoginGuardGuard implements CanActivate {
     | boolean
     | UrlTree {
     let token = localStorage.getItem('myToken');
-
+    console.log(token);
+    
     if (token) return true;
     else return false;
   }
