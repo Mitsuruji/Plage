@@ -23,7 +23,7 @@ export class AccessTokenInterceptor implements HttpInterceptor {
     let token = localStorage.getItem('myToken');
     if (token) {
       let cloneRequest = request.clone({
-        headers: new HttpHeaders().set('Authorization', 'bearer ' + token),
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
       });
       return next.handle(cloneRequest);
     } else {

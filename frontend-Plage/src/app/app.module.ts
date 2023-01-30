@@ -9,13 +9,15 @@ import { HomeComponent } from './home/home.component';
 import { tokenInterceptorProvider } from './Interceptor/access-token.interceptor';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,
