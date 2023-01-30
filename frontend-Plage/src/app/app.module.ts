@@ -10,7 +10,10 @@ import { tokenInterceptorProvider } from './Interceptor/access-token.interceptor
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
-import { ReservationsComponent } from './client/reservations/reservations.component';
+import { LoginGuard } from './Guards/login.guard';
+import { LogoutGuard } from './Guards/logout.guard';
+import { LocationsComponent } from './concessionnaire/locations/locations.component';
+import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,7 @@ import { ReservationsComponent } from './client/reservations/reservations.compon
     LoginComponent,
     NavbarComponent,
     RegisterComponent,
-    ReservationsComponent
+    LocationsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { ReservationsComponent } from './client/reservations/reservations.compon
     PLAGE_ROUTING,
     HttpClientModule
   ],
-  providers: [tokenInterceptorProvider],
+  providers: [tokenInterceptorProvider, LoginGuard, LogoutGuard, ConcessionnaireGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

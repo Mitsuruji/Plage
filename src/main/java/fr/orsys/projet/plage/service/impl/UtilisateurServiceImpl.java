@@ -1,5 +1,6 @@
 package fr.orsys.projet.plage.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,10 +28,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@Override
-	public UtilisateurDTO getUtilisateurByEmailAndMotDePasse(String email, String motDePasse) {
+	public UtilisateurDTO getUtilisateurByEmailAndMotDePasse(String email, String motDePasse, String className) {
+		
 		UtilisateurDTO utilisateurDTO = null;
 		boolean motDePasseEquals = passwordEncoder.matches(motDePasse, utilsateurDAO.findByEmail(email).get().getMotDePasse());
-		if(motDePasseEquals) {
+		boolean typeUserEquals = utilsateurDAO.findByEmail(email).get().getClass().getSimpleName().equals(StringUtils.removeEnd(className, "DTO"));
+		
+		if(motDePasseEquals && typeUserEquals) {
 			utilisateurDTO = utilisateurMapper
 					.toDto(utilsateurDAO.findByEmail(email).get());
 			return utilisateurDTO;

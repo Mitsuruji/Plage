@@ -1,5 +1,7 @@
 package fr.orsys.projet.plage.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -23,6 +25,7 @@ public abstract class UtilisateurDTO {
 	String nom;
 	String prenom;
 	String email;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	String motDePasse;
 	String token;
 }

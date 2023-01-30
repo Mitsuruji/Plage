@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LogoutGuardGuard } from './logout-guard.guard';
+import { ConcessionnaireGuard } from './concessionnaire.guard';
 
-describe('LogoutGuardGuard', () => {
-  let guard: LogoutGuardGuard;
+describe('ConcessionnaireGuard', () => {
+  let guard: ConcessionnaireGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(LogoutGuardGuard);
+    guard = TestBed.inject(ConcessionnaireGuard);
   });
 
   it('should be created', () => {

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.DatatypeConverter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -33,19 +34,28 @@ public class JwtGeneratorServiceImpl implements JwtGeneratorService {
 
 	private String secret = "HRlELXqpSBqsdoazjSJFHusfikdvjjseiYEBDFJSJZdfgyiomyoi";
 	
-	private Long jwtExpirationMs = (long) (1000 * 60 * 60 * 24);
+	private Long jwtExpirationMs = (long) (1000 * 60 * 60 * 24); //1jour
 
 	byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
 	Key signingKey = new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS256.getJcaName());
 
 	@Override
 	public Map<String, String> generateToken(UtilisateurDTO utilisateurDTO) {
+		
+		
+		
 		String jwtToken = "";
 		Date currentDate = new Date();
 		long t = currentDate.getTime();
-		Date expirationTime = new Date(t + jwtExpirationMs); // 5 minutes
-		jwtToken = Jwts.builder().setSubject(utilisateurDTO.getEmail()).setIssuedAt(currentDate)
-				.setExpiration(expirationTime).signWith(signingKey, SignatureAlgorithm.HS256).compact();
+		Date expirationTime = new Date(t + jwtExpirationMs);
+		
+		jwtToken = Jwts.builder().setSubject(utilisateurDTO.getEmail())
+									.claim("type", StringUtils.removeEnd(utilisateurDTO.getClass().getSimpleName(), "DTO"))
+									.setIssuedAt(currentDate)
+									.setExpiration(expirationTime)
+									.signWith(signingKey, SignatureAlgorithm.HS256)
+									.compact();
+				
 		Map<String, String> jwtTokenGen = new HashMap<>();
 		jwtTokenGen.put("token", jwtToken);
 		jwtTokenGen.put("message", message);

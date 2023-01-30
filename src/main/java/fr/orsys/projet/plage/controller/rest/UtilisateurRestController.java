@@ -1,6 +1,10 @@
 package fr.orsys.projet.plage.controller.rest;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.orsys.projet.plage.dto.UtilisateurDTO;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.service.UtilisateurService;
+import fr.orsys.projet.plage.service.impl.UserDetailsImpl;
 import fr.orsys.projet.plage.util.JwtGeneratorService;
 import lombok.AllArgsConstructor;
 
@@ -41,50 +46,32 @@ public class UtilisateurRestController {
 	}
 
 	@PostMapping("/authentification")
-	public ResponseEntity<Object> loginUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO,
-			HttpServletRequest request) {
-		request.getCharacterEncoding();
+	public ResponseEntity<Object> loginUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
+		System.out.println(utilisateurDTO);
 		try {
 			if (utilisateurDTO.getEmail() == null || utilisateurDTO.getMotDePasse() == null) {
 				throw new UtilisateurNotFoundException("Email ou mot de passe vide");
 			}
 			UtilisateurDTO userData = utilisateurService.getUtilisateurByEmailAndMotDePasse(utilisateurDTO.getEmail(),
-					utilisateurDTO.getMotDePasse());
+					utilisateurDTO.getMotDePasse(), utilisateurDTO.getClass().getSimpleName());
 
 			if (userData == null) {
 				throw new UtilisateurNotFoundException("Email ou mot de passe invalides");
 			}
-
+			
 			Authentication authentication = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(utilisateurDTO.getEmail(), utilisateurDTO.getMotDePasse()));
-
+			
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
 //			UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
 			System.out.println(jwtGenerator.generateToken(userData));
-
+			
 			return new ResponseEntity<>(jwtGenerator.generateToken(userData), HttpStatus.OK);
 		} catch (UtilisateurNotFoundException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
 		}
 	}
-
-//	@PostMapping("/authentification")
-//	public ResponseEntity<Object> loginUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
-//		try {
-//			if (utilisateurDTO.getEmail() == null || utilisateurDTO.getMotDePasse() == null) {
-//				throw new UtilisateurNotFoundException("Email ou mot de passe vide");
-//			}
-//			UtilisateurDTO userData = utilisateurService.getUtilisateurByEmailAndMotDePasse(utilisateurDTO.getEmail(), utilisateurDTO.getMotDePasse());
-//			if (userData == null) {
-//				throw new UtilisateurNotFoundException("Email ou mot de passe invalides");
-//			}
-//			return new ResponseEntity<>(jwtGenerator.generateToken(utilisateurDTO), HttpStatus.OK);
-//			return new ResponseEntity<>(jwtGenerator.generateToken(userData), HttpStatus.OK);
-//		} catch (UtilisateurNotFoundException e) {
-//			return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-//		}
-//	}
 
 }
