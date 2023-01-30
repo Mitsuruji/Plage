@@ -50,7 +50,6 @@ public class JwtGeneratorServiceImpl implements JwtGeneratorService {
 		Date expirationTime = new Date(t + jwtExpirationMs);
 		
 		jwtToken = Jwts.builder().setSubject(utilisateurDTO.getEmail())
-									.claim("user", utilisateurDTO)
 									.claim("type", StringUtils.removeEnd(utilisateurDTO.getClass().getSimpleName(), "DTO"))
 									.setIssuedAt(currentDate)
 									.setExpiration(expirationTime)

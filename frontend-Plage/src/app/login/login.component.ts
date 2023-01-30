@@ -17,10 +17,8 @@ export class LoginComponent {
   ) {}
 
   submitHandler(f: any) {
-    console.log(f.value);
     this.authService.connect(f.value).subscribe({
       next: (response: any) => {
-        console.log(response);
         localStorage.setItem('myToken', response['token']);
         this.router.navigateByUrl('');
       },

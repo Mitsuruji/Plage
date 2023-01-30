@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { JwtUtilsService } from './../Services/jwt-utils.service';
+import { Concessionnaire } from './../model/concessionnaire.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,9 @@ export class ConcessionnaireGuard implements CanActivate {
     | boolean
     | UrlTree {
     let token = localStorage.getItem('myToken')!;
-    console.log(this.jwtUtilsService.getDecodedAccessToken(token));
+    const jws = this.jwtUtilsService.getDecodedAccessToken(token);
     
-    if (token) return true;
+    if (token && jws.type == 'Concessionnaire') return true;
     else return false;
   }
   
