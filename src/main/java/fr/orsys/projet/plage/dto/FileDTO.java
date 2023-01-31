@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AccessLevel;
@@ -16,9 +17,9 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
+//@JsonIdentityInfo(
+//		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+//		  property = "id")
 public class FileDTO {
 
 	Long id;
@@ -26,7 +27,7 @@ public class FileDTO {
 	Byte numero;
 	
 	Double prixJournalier;
-	
+	@JsonIgnore
 	List<ParasolDTO> parasols;
 	
 }

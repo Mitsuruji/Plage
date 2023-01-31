@@ -17,9 +17,9 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
+//@JsonIdentityInfo(
+//		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+//		  property = "id")
 public class LocationDTO {
 
 	Long id;

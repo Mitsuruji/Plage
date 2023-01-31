@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AccessLevel;
@@ -16,12 +17,13 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "code")
+//@JsonIdentityInfo(
+//		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+//		  property = "code")
 public class PaysDTO {
 
 	String code;
 	String nom;
+	@JsonIgnore
 	List<LocataireDTO> locataires;
 }
