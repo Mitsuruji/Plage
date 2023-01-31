@@ -12,8 +12,10 @@ import fr.orsys.projet.plage.exception.ConcessionnaireExistException;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.mapper.ConcessionnaireMapper;
 import fr.orsys.projet.plage.service.ConcessionnaireService;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class ConcessionnaireServiceImpl implements ConcessionnaireService {
 
 	private ConcessionnaireDAO concessionnaireDAO;

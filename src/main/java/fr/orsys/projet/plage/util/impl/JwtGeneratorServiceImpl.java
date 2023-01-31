@@ -86,14 +86,15 @@ public class JwtGeneratorServiceImpl implements JwtGeneratorService {
 		String authHeader = request.getHeader("Authorization");
 		if (authHeader != null && authHeader.startsWith("Bearer ")) {
 			String token = authHeader.substring(7);
-			Base64.Decoder decoder = Base64.getUrlDecoder();
-			return new String(decoder.decode(token));
+//			Base64.Decoder decoder = Base64.getUrlDecoder();
+//			return new String(decoder.decode(token));
+			return token;
 		} else {
 			if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 				throw new ServletException("An exception occurred");
 			}
+			return null;
 		}
-		return null;
 
 	}
 

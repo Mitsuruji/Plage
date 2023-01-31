@@ -14,6 +14,7 @@ import { LoginGuard } from './Guards/login.guard';
 import { LogoutGuard } from './Guards/logout.guard';
 import { LocationsComponent } from './concessionnaire/locations/locations.component';
 import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
+import { LocationDetailComponent } from './concessionnaire/location-detail/location-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
     LoginComponent,
     NavbarComponent,
     RegisterComponent,
-    LocationsComponent
+    LocationsComponent,
+    LocationDetailComponent
   ],
   imports: [
     BrowserModule,
