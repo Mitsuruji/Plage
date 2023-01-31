@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,8 @@ import { LoginGuard } from './Guards/login.guard';
 import { LogoutGuard } from './Guards/logout.guard';
 import { LocationsComponent } from './concessionnaire/locations/locations.component';
 import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
+import { ReservationComponent } from './client/reservation/reservation.component';
+import { AddReservationComponent } from './client/add-reservation/add-reservation.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +24,23 @@ import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
     LoginComponent,
     NavbarComponent,
     RegisterComponent,
-    LocationsComponent
+    LocationsComponent,
+    ReservationComponent,
+    AddReservationComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     PLAGE_ROUTING,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [tokenInterceptorProvider, LoginGuard, LogoutGuard, ConcessionnaireGuard],
-  bootstrap: [AppComponent]
+  providers: [
+    tokenInterceptorProvider,
+    LoginGuard,
+    LogoutGuard,
+    ConcessionnaireGuard,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,14 +1,13 @@
 package fr.orsys.projet.plage.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.orsys.projet.plage.dao.UtilisateurDAO;
 import fr.orsys.projet.plage.dto.UtilisateurDTO;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
+import fr.orsys.projet.plage.mapper.CycleAvoidingMappingContext;
 import fr.orsys.projet.plage.mapper.UtilisateurMapper;
 import fr.orsys.projet.plage.service.UtilisateurService;
 import lombok.AllArgsConstructor;
@@ -24,7 +23,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Override
 	public UtilisateurDTO getUtilisateurById(Long id) {
 		return utilisateurMapper.toDto(utilsateurDAO.findById(id).orElseThrow(
-				() -> new UtilisateurNotFoundException("Utilisateur d'identifiant " + id + " inexistant")));
+				() -> new UtilisateurNotFoundException("Utilisateur d'identifiant " + id + " inexistant")), new CycleAvoidingMappingContext());
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		
 		if(motDePasseEquals && typeUserEquals) {
 			utilisateurDTO = utilisateurMapper
-					.toDto(utilsateurDAO.findByEmail(email).get());
+					.toDto(utilsateurDAO.findByEmail(email).get(), new CycleAvoidingMappingContext());
 			return utilisateurDTO;
 		} else {
 			throw new UtilisateurNotFoundException("Email et mot de passe invalides");
@@ -46,7 +45,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public void saveUtilisateur(UtilisateurDTO utilisateurDTO) {
-		utilsateurDAO.save(utilisateurMapper.toEntity(utilisateurDTO));
+		utilsateurDAO.save(utilisateurMapper.toEntity(utilisateurDTO, new CycleAvoidingMappingContext()));
 
 	}
 
