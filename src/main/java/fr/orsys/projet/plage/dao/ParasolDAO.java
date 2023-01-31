@@ -12,9 +12,11 @@ public interface ParasolDAO extends JpaRepository<Parasol, Long> {
 
 	List<Location> findLocationsByNumEmplacement(Long id);
 	
-	Parasol findByNumEmplacement(byte numEmplacement);
+	Parasol findByNumEmplacement(Byte numEmplacement);
 	
 	File findFileById(Long id);
 
-	boolean existsByNumEmplacement(byte numEmplacement);
+	boolean existsByNumEmplacement(Byte numEmplacement);
+	
+	Parasol findByNumEmplacementAndFileNumero(Byte numEmplacement, Byte fileNumero);
 }

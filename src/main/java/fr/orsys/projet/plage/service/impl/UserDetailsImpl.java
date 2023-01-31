@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import fr.orsys.projet.plage.business.Utilisateur;
 
-
 public class UserDetailsImpl implements UserDetails {
 
 	/**
@@ -21,39 +20,30 @@ public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	
+
 	private String username;
 
-	  private String email;
+	private String password;
 
-	  private String password;
+	private Collection<? extends GrantedAuthority> authorities;
 
-	  private Collection<? extends GrantedAuthority> authorities;
-	  
-	  private static List<String> role = Arrays.asList(new String[]{"Locataire", "Concessionnaire"});
+	private static List<String> role = Arrays.asList(new String[] { "Locataire", "Concessionnaire" });
 
-	  public UserDetailsImpl(Long id, String username, String email, String password,
-	      Collection<? extends GrantedAuthority> authorities) {
-	    this.id = id;
-	    this.username = username;
-	    this.email = email;
-	    this.password = password;
-	    this.authorities = authorities;
-	  }
-	
-	  public static UserDetailsImpl build(Utilisateur user) {
-		    List<GrantedAuthority> authorities = role.stream()
-		        .map(role -> new SimpleGrantedAuthority(role))
-		        .collect(Collectors.toList());
+	public UserDetailsImpl(Long id, String username, String email, String password,
+			Collection<? extends GrantedAuthority> authorities) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.authorities = authorities;
+	}
 
-		    return new UserDetailsImpl(
-		        user.getId(), 
-		        user.getEmail(), 
-		        user.getEmail(),
-		        user.getMotDePasse(), 
-		        authorities);
-		  }
-	  
+	public static UserDetailsImpl build(Utilisateur user) {
+		List<GrantedAuthority> authorities = role.stream().map(role -> new SimpleGrantedAuthority(role))
+				.collect(Collectors.toList());
+
+		return new UserDetailsImpl(user.getId(), user.getEmail(), user.getEmail(), user.getMotDePasse(), authorities);
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
@@ -88,15 +78,15 @@ public class UserDetailsImpl implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
 	@Override
-	  public boolean equals(Object o) {
-	    if (this == o)
-	      return true;
-	    if (o == null || getClass() != o.getClass())
-	      return false;
-	    UserDetailsImpl user = (UserDetailsImpl) o;
-	    return Objects.equals(id, user.id);
-	  }
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		UserDetailsImpl user = (UserDetailsImpl) o;
+		return Objects.equals(id, user.id);
+	}
 
 }

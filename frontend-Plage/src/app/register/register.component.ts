@@ -8,6 +8,7 @@ import { PaysService } from '../Services/pays.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  showError = false;
   listPays = ['France', 'Allemagne', 'Espagne', 'Italie', 'Suisse'];
 
   constructor(private paysService: PaysService) {}

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="row">
   <h2>Inscription</h2>
   <form #registrationForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -26,6 +26,7 @@
     <div class="form-group">
       <label for="email">Email</label>
       <input
+        #inpEmail="ngModel"
         type="email"
         class="form-control"
         id="email"
@@ -33,6 +34,12 @@
         ngModel
         required
       />
+      <div
+        *ngIf="!inpEmail.valid && inpEmail.touched"
+        class="alert alert-danger"
+      >
+        Ce champ est obligatoire et est une adresse mail
+      </div>
     </div>
     <div class="form-group">
       <label for="pays">Pays de résidence</label>
@@ -59,7 +66,14 @@
         required
         minlength="8"
       />
+      <br />
     </div>
-    <button type="submit" class="btn btn-primary">S'inscrire</button>
+    <button
+      [disabled]="registrationForm.invalid"
+      type="submit"
+      class="btn btn-secondary"
+    >
+      S'inscrire
+    </button>
   </form>
 </div>

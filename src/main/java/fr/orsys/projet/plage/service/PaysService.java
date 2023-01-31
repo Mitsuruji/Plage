@@ -18,6 +18,4 @@ public interface PaysService {
 	
 	Optional<Pays> getPaysByCode(String code);
 	
-	Pays getPaysByNom(String nom);
-	
 }
