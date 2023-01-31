@@ -29,78 +29,72 @@ import io.jsonwebtoken.security.SignatureException;
 public class JwtGeneratorServiceImpl implements JwtGeneratorService {
 
 	private static final Logger logger = LoggerFactory.getLogger(JwtGeneratorServiceImpl.class);
-	
+
 	private String message = "Token genere correctement";
 
 	private String secret = "HRlELXqpSBqsdoazjSJFHusfikdvjjseiYEBDFJSJZdfgyiomyoi";
-	
-	private Long jwtExpirationMs = (long) (1000 * 60 * 60 * 24); //1jour
+
+	private Long jwtExpirationMs = (long) (1000 * 60 * 60 * 24); // 1jour
 
 	byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
 	Key signingKey = new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS256.getJcaName());
 
 	@Override
 	public Map<String, String> generateToken(UtilisateurDTO utilisateurDTO) {
-		
-		
-		
+
 		String jwtToken = "";
 		Date currentDate = new Date();
 		long t = currentDate.getTime();
 		Date expirationTime = new Date(t + jwtExpirationMs);
-		
+
 		jwtToken = Jwts.builder().setSubject(utilisateurDTO.getEmail())
-									.claim("type", StringUtils.removeEnd(utilisateurDTO.getClass().getSimpleName(), "DTO"))
-									.setIssuedAt(currentDate)
-									.setExpiration(expirationTime)
-									.signWith(signingKey, SignatureAlgorithm.HS256)
-									.compact();
-				
+				.claim("type", StringUtils.removeEnd(utilisateurDTO.getClass().getSimpleName(), "DTO"))
+				.setIssuedAt(currentDate).setExpiration(expirationTime).signWith(signingKey, SignatureAlgorithm.HS256)
+				.compact();
+
 		Map<String, String> jwtTokenGen = new HashMap<>();
 		jwtTokenGen.put("token", jwtToken);
 		jwtTokenGen.put("message", message);
 		return jwtTokenGen;
 	}
-	
-	public String getUserNameFromJwtToken(String token) {
-	    return Jwts.parserBuilder().setSigningKey(signingKey).build().parseClaimsJws(token).getBody().getSubject();
-	  }
+
+	public String getEmailFromJwtToken(String token) {
+		return Jwts.parserBuilder().setSigningKey(signingKey).build().parseClaimsJws(token).getBody().getSubject();
+	}
 
 	public boolean validateJwtToken(String authToken) {
-	    try {
-	      Jwts.parserBuilder().setSigningKey(signingKey).build().parseClaimsJws(authToken);
-	      return true;
-	    } catch (SignatureException e) {
-	      logger.error("Invalid JWT signature: {}", e.getMessage());
-	    } catch (MalformedJwtException e) {
-	      logger.error("Invalid JWT token: {}", e.getMessage());
-	    } catch (ExpiredJwtException e) {
-	      logger.error("JWT token is expired: {}", e.getMessage());
-	    } catch (UnsupportedJwtException e) {
-	      logger.error("JWT token is unsupported: {}", e.getMessage());
-	    } catch (IllegalArgumentException e) {
-	      logger.error("JWT claims string is empty: {}", e.getMessage());
-	    }
+		try {
+			Jwts.parserBuilder().setSigningKey(signingKey).build().parseClaimsJws(authToken);
+			return true;
+		} catch (SignatureException e) {
+			logger.error("Invalid JWT signature: {}", e.getMessage());
+		} catch (MalformedJwtException e) {
+			logger.error("Invalid JWT token: {}", e.getMessage());
+		} catch (ExpiredJwtException e) {
+			logger.error("JWT token is expired: {}", e.getMessage());
+		} catch (UnsupportedJwtException e) {
+			logger.error("JWT token is unsupported: {}", e.getMessage());
+		} catch (IllegalArgumentException e) {
+			logger.error("JWT claims string is empty: {}", e.getMessage());
+		}
 
-	    return false;
+		return false;
 	}
 
 	@Override
 	public String getJwtFromLocalStorage(HttpServletRequest request) throws ServletException {
-		System.out.println(request.getHeader("Authorization"));
 		String authHeader = request.getHeader("Authorization");
-		if (authHeader != null && authHeader.startsWith("Bearer ")){
-		     String token = authHeader.substring(7);
-		     Base64.Decoder decoder = Base64.getUrlDecoder();
-		     return new String(decoder.decode(token));
+		if (authHeader != null && authHeader.startsWith("Bearer ")) {
+			String token = authHeader.substring(7);
+			Base64.Decoder decoder = Base64.getUrlDecoder();
+			return new String(decoder.decode(token));
 		} else {
-			if(authHeader == null || !authHeader.startsWith("Bearer ")){
-                throw new ServletException("An exception occurred");
-            }  
+			if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+				throw new ServletException("An exception occurred");
+			}
 		}
 		return null;
-		
-		
+
 	}
-	
+
 }

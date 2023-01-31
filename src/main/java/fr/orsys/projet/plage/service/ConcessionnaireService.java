@@ -18,7 +18,9 @@ public interface ConcessionnaireService {
 
 	Optional<Concessionnaire> getConcessionnaire(Long id);
 
-	Concessionnaire getConcessionnaire(String numeroDeTelephone);
+	Concessionnaire getConcessionnaireByTel(String numeroDeTelephone);
+	
+	Concessionnaire getConcessionnaireByEmail(String email);
 
 	Concessionnaire updateConcessionnaire(String numeroDeTelephone);
 }

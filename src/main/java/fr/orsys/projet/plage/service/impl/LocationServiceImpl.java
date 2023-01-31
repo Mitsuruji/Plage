@@ -5,29 +5,29 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import fr.orsys.projet.plage.business.Concessionnaire;
 import fr.orsys.projet.plage.business.Locataire;
 import fr.orsys.projet.plage.business.Location;
 import fr.orsys.projet.plage.dao.LocationDAO;
+import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
 import fr.orsys.projet.plage.dto.LocataireDTO;
 import fr.orsys.projet.plage.dto.LocationDTO;
 import fr.orsys.projet.plage.enums.StatutEnum;
 import fr.orsys.projet.plage.exception.LocationNotFoundException;
+import fr.orsys.projet.plage.mapper.ConcessionnaireMapper;
 import fr.orsys.projet.plage.mapper.LocataireMapper;
 import fr.orsys.projet.plage.mapper.LocationMapper;
 import fr.orsys.projet.plage.service.LocationService;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class LocationServiceImpl implements LocationService {
 
 	private final LocationDAO locationDAO;
 	private final LocationMapper locationMapper;
 	private final LocataireMapper locataireMapper;
-
-	public LocationServiceImpl(LocationDAO locationDAO, LocationMapper locationMapper, LocataireMapper locataireMapper) {
-	    this.locationDAO = locationDAO;
-	    this.locationMapper = locationMapper;
-	    this.locataireMapper = locataireMapper;
-	}
+	private final ConcessionnaireMapper concessionnaireMapper;
 
 	@Override
 	public LocationDTO getLocation(Long id) {
@@ -46,6 +46,14 @@ public class LocationServiceImpl implements LocationService {
 	    return locationDTOs;
 	}
 
+	@Override
+	public List<LocationDTO> getLocationsByConcessionnaire(ConcessionnaireDTO concessionnaireDTO){
+		Concessionnaire concessionnaire = concessionnaireMapper.toEntity(concessionnaireDTO);
+	    List<Location> locations = locationDAO.findByConcessionnaire(concessionnaire);
+	    return locationMapper.toDtos(locations);
+		
+	}
+	
 	@Override
 	public List<LocationDTO> getLocationsByLocataire(LocataireDTO locataireDTO) {
 	    Locataire locataire = locataireMapper.toEntity(locataireDTO);

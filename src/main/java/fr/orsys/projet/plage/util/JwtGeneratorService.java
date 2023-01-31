@@ -11,7 +11,7 @@ public interface JwtGeneratorService {
 
 	Map<String, String> generateToken(UtilisateurDTO utilisateurDTO);
 	
-	String getUserNameFromJwtToken(String token);
+	String getEmailFromJwtToken(String token);
 	
 	boolean validateJwtToken(String authToken);
 

@@ -47,7 +47,6 @@ public class UtilisateurRestController {
 
 	@PostMapping("/authentification")
 	public ResponseEntity<Object> loginUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
-		System.out.println(utilisateurDTO);
 		try {
 			if (utilisateurDTO.getEmail() == null || utilisateurDTO.getMotDePasse() == null) {
 				throw new UtilisateurNotFoundException("Email ou mot de passe vide");

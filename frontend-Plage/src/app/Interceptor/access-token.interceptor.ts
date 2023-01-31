@@ -18,7 +18,6 @@ export class AccessTokenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log(request);
 
     let token = localStorage.getItem('myToken');
     if (token) {

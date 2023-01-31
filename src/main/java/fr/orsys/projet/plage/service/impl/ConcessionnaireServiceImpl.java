@@ -49,8 +49,13 @@ public class ConcessionnaireServiceImpl implements ConcessionnaireService {
 	}
 
 	@Override
-	public Concessionnaire getConcessionnaire(String numeroDeTelephone) {
+	public Concessionnaire getConcessionnaireByTel(String numeroDeTelephone) {
 		return concessionnaireDAO.findByNumeroDeTelephone(numeroDeTelephone);
+	}
+	
+	@Override
+	public Concessionnaire getConcessionnaireByEmail(String email) {
+		return concessionnaireDAO.findByEmail(email);
 	}
 
 	@Override
@@ -58,7 +63,7 @@ public class ConcessionnaireServiceImpl implements ConcessionnaireService {
 		if (!concessionnaireDAO.existsByNumeroDeTelephone(numeroDeTelephone)) {
 			throw new UtilisateurNotFoundException("Ce concessionnaire n'existe pas en base");
 		}
-		Concessionnaire concessionnaire = getConcessionnaire(numeroDeTelephone);
+		Concessionnaire concessionnaire = getConcessionnaireByTel(numeroDeTelephone);
 		concessionnaire.setNumeroDeTelephone(numeroDeTelephone);
 		return concessionnaireDAO.save(concessionnaire);
 	}
