@@ -44,7 +44,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	@Transactional
+    @Transactional
 	public void run(String... args) throws Exception {
 		addFiles();
 		addParasols();
@@ -52,8 +52,11 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		addlistPays();
 		addStatuts();
 		addConcessionnaire();
-		addLocataire();
-		addLocation();
+		addLocataire("salih", "salih", "salih@orsys.fr", "12345678", "FR", "aucun");
+		addLocataire("drissaoui", "amine", "amine@orsys.fr", "12345678", "IT", "cousin/cousine");
+		addLocation(6,2,"Vivement les vacances!", "salih@orsys.fr");
+		addLocation(7,4,"Vivement les vacances!", "salih@orsys.fr");
+		addLocation(5,3,"Vivement les vacances chez Peppe!!", "amine@orsys.fr");
 	}
 
 	private void addFiles() {
@@ -64,7 +67,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			fileDAO.save(file);
 		}
 	}
-
+	
 	private void addParasols() {
 		for (int i = 1; i <= 8; i++) {
 			for (int j = 1; j <= 10; j++) {
@@ -76,11 +79,13 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		}
 	}
 
+
 	private void addLiensDeParentes() {
 		lienDeParenteDAO.save(new LienDeParente("frère/sœur", 0.5F));
 		lienDeParenteDAO.save(new LienDeParente("cousin/cousine", 0.25F));
 		lienDeParenteDAO.save(new LienDeParente("aucun", 0F));
 	}
+
 
 	private void addlistPays() {
 		Pays france = new Pays("FR", "France");
@@ -91,12 +96,14 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		paysDAO.saveAll(Arrays.asList(france, italie, espagne, allemagne, angleterre));
 	}
 
+
 	private void addStatuts() {
 		Statut aTraiter = new Statut("A traiter");
 		Statut confirmee = new Statut("Confirmée");
 		Statut refusee = new Statut("Refusée");
 		statutDAO.saveAll(Arrays.asList(aTraiter, confirmee, refusee));
 	}
+
 
 	private void addConcessionnaire() {
 		Concessionnaire concessionnaire = new Concessionnaire();
@@ -106,26 +113,30 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		concessionnaireDAO.save(concessionnaire);
 	}
 
-	private void addLocataire() {
+
+	private void addLocataire(String nom, String prenom, String email, String motDePasse, String codePays,
+			String lienDePareString) {
 		Locataire locataire = new Locataire();
-		locataire.setEmail("salih@orsys.fr");
-		locataire.setMotDePasse(passwordEncoder.encode("12345678"));
+		locataire.setNom(nom);
+		locataire.setPrenom(prenom);
+		locataire.setEmail(email);
+		locataire.setMotDePasse(passwordEncoder.encode(motDePasse));
 		locataire.setDateHeureInscription(LocalDateTime.now());
-		locataire.setPays(paysDAO.findByCode("FR"));
-		locataire.setLienDeParente(lienDeParenteDAO.findByNom("aucun"));
+		locataire.setPays(paysDAO.findByCode(codePays));
+		locataire.setLienDeParente(lienDeParenteDAO.findByNom(lienDePareString));
 		locataireDAO.save(locataire);
 	}
 
-	private void addLocation() {
+
+	private void addLocation(int mouth, int days, String remarques, String emailLocataire) {
 		Location location = new Location();
-		location.setDateHeureDebut(LocalDateTime.now().plusMonths(6));
-		location.setDateHeureFin(LocalDateTime.now().plusMonths(6).plusDays(2));
-		location.setRemarques("Vivement les vacances!");
+		location.setDateHeureDebut(LocalDateTime.now().plusMonths(mouth));
+		location.setDateHeureFin(LocalDateTime.now().plusMonths(mouth).plusDays(days));
+		location.setRemarques(remarques);
 		location.setConcessionnaire(concessionnaireDAO.findByEmail("peppe@orsys.fr"));
-		Locataire locataire = locataireDAO.findByEmail("salih@orsys.fr");
+		Locataire locataire = locataireDAO.findByEmail(emailLocataire);
 		location.setLocataire(locataire);
-		List<Parasol> parasols = Arrays.asList(
-				parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 1),
+		List<Parasol> parasols = Arrays.asList(parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 1),
 				parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 2),
 				parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 3));
 		location.setParasols(parasols);
