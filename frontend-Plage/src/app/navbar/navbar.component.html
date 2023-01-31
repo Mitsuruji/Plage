@@ -1,27 +1,38 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a
-      class="nav-link"
-      routerLink="/"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >Home</a
-    >
-  </li>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav nav-tabs me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Accueil</a
+          >
+        </li>
 
-  <li *ngIf="authSer.isConnected() && authSer.userType() == 'Concessionnaire'" class="nav-item">
-    <a
-      class="nav-link"
-      routerLink="/concessionnaire/locations"
-      routerLinkActive="active"
-      >Mes locations</a
-    >
-  </li>
-
-  <li *ngIf="!authSer.isConnected()" class="nav-item">
-    <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-  </li>
-  <li *ngIf="authSer.isConnected()" class="nav-item">
-    <a class="nav-link" (click)="authSer.disconnect()">Logout</a>
-  </li>
-</ul>
+        <li *ngIf="authSer.isConnected() && authSer.userType() == 'Concessionnaire'" class="nav-item">
+          <a
+            class="nav-link ms-auto"
+            routerLink="/concessionnaire/locations"
+            routerLinkActive="active"
+            >Mes locations</a
+          >
+        </li>
+      </ul>
+      <ul class="nav nav-tabs ms-auto mb-2 mb-lg-0">
+        <li *ngIf="!authSer.isConnected()" class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">Connection</a>
+        </li>
+        <li *ngIf="authSer.isConnected()" class="nav-item me-auto">
+          <a class="nav-link" (click)="authSer.disconnect()">Deconnexion</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

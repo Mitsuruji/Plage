@@ -3,8 +3,10 @@ package fr.orsys.projet.plage.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AccessLevel;
@@ -17,9 +19,12 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(callSuper = true)
+@ToString(callSuper=true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LocataireDTO extends UtilisateurDTO {
+//@JsonIdentityInfo(
+//		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+//		  property = "id")
+public class LocataireDTO  extends UtilisateurDTO{
 
 	Long id;
 	LocalDateTime dateHeureInscription;
