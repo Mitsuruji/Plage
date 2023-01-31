@@ -8,9 +8,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,8 +30,7 @@ public abstract class Utilisateur {
 	@NotBlank
     @Column(name = "email", unique= true)
 	protected String email;
-
-	@JsonProperty(access = Access.WRITE_ONLY)
+	
     @Column(name = "mot_de_passe")
     protected String motDePasse;
 }

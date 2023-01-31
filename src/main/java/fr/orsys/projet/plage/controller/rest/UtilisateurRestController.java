@@ -1,11 +1,5 @@
 package fr.orsys.projet.plage.controller.rest;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.orsys.projet.plage.dto.UtilisateurDTO;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.service.UtilisateurService;
-import fr.orsys.projet.plage.service.impl.UserDetailsImpl;
 import fr.orsys.projet.plage.util.JwtGeneratorService;
 import lombok.AllArgsConstructor;
 
