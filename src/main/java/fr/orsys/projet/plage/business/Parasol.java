@@ -12,6 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -32,10 +37,12 @@ public class Parasol {
 	@Column(name = "num_emplacement")
 	private Byte numEmplacement;
 
+	@JsonManagedReference
 	@ManyToOne
 	@NotNull
 	private File file;
 
+	@JsonBackReference
 	@ManyToMany(mappedBy = "parasols")
 	private List<Location> locations;
 

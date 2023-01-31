@@ -3,6 +3,9 @@ package fr.orsys.projet.plage.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +21,9 @@ import lombok.experimental.FieldDefaults;
 public class LocataireDTO  extends UtilisateurDTO{
 
 	LocalDateTime dateHeureInscription;
+	@JsonBackReference
 	List<LocationDTO> locations;
+	@JsonManagedReference
 	PaysDTO pays;
 	LienDeParenteDTO lienDeParente;
 

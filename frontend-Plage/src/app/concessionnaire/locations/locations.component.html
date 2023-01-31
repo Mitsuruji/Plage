@@ -14,17 +14,11 @@
             </tr>
         </thead>
         <tbody class="table-warning">
-            <tr>
-                <td>John Snow</td>
-                <td>JS@orsys.Fr</td>
-                <td>Cousin</td>
-                <td routerLink="../location-details" routerLinkActive="active">Refusé</td>
-            </tr>
-            <tr>
-                <td>John Snow</td>
-                <td>JS@orsys.Fr</td>
-                <td>Cousin</td>
-                <td>Refusé</td>
+            <tr *ngFor="let location of allLocations">
+                <td>{{ location.locataire.prenom }} {{ location.locataire.nom }}</td>
+                <td>{{ location.locataire.email }}</td>
+                <td>{{ location.locataire.lienDeParente.nom }}</td>
+                <td routerLink="../location-details" routerLinkActive="active">{{ location.locataire.statut }}</td>
             </tr>
         </tbody>
     </table>

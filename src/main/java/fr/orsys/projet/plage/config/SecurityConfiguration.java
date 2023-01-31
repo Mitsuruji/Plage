@@ -64,6 +64,7 @@ public class SecurityConfiguration {
 		        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeRequests()
 				.antMatchers("/api/utilisateur/**",
+								"/api/concessionnaire/**",
 								"/v3/api-docs/**",
 								"/swagger-resources",
 								"/swagger-resources/**",

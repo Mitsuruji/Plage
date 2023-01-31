@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import fr.orsys.projet.plage.business.Location;
 import fr.orsys.projet.plage.dto.ConcessionnaireDTO;
@@ -54,6 +55,7 @@ public class ConcessionnaireRestController {
 			
 			ObjectMapper mapper = new ObjectMapper();
 	        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+	        mapper.registerModule(new JavaTimeModule());
 			
 			String jsonStr = mapper.writeValueAsString(locations);
 			return new ResponseEntity<>(jsonStr, HttpStatus.OK);

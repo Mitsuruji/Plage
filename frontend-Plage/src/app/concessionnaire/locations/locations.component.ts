@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LocationsService } from './../../Services/locations.service';
 
 @Component({
   selector: 'app-locations',
@@ -9,20 +10,14 @@ import { HttpClient } from '@angular/common/http';
 export class LocationsComponent {
 
   allLocations: any;
-  constructor(private http: HttpClient) {}
-
-  link = 'http://localhost:8080/api/concessionnaire/locations';
-
-  getAllLocations(){
-    console.log(this.http.get(this.link));
-    
-    return this.http.get(this.link);
-  }
+  constructor(private locationsService: LocationsService) {}
 
   ngOnInit(){
-    this.getAllLocations().subscribe({
+    this.locationsService.getLocationsByConcessionnaire().subscribe({
       next: (response) => {
         this.allLocations = response
+        console.log(this.allLocations);
+        
       }
     });
   }

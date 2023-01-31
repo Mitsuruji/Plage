@@ -14,6 +14,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -39,6 +43,7 @@ public class File {
 	@NonNull
 	private Double prixJournalier;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "file", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Parasol> parasols;
 

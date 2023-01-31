@@ -10,6 +10,10 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,6 +34,7 @@ public class Pays {
 	@NonNull
 	private String nom;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="pays", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Locataire> locataires;
 }
