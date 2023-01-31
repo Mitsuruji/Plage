@@ -1,5 +1,7 @@
 package fr.orsys.projet.plage.mapper;
 
+import org.mapstruct.Context;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.SubclassExhaustiveStrategy;
 import org.mapstruct.SubclassMapping;
@@ -19,10 +21,11 @@ public interface UtilisateurMapper {
 
 	@SubclassMapping(source = Locataire.class, target = LocataireDTO.class)
 	@SubclassMapping(source = Concessionnaire.class, target = ConcessionnaireDTO.class)
-	UtilisateurDTO toDto(Utilisateur utilisateur);
+	UtilisateurDTO toDto(Utilisateur utilisateur, @Context CycleAvoidingMappingContext context);
 
+	@InheritInverseConfiguration
 	@SubclassMapping(source = LocataireDTO.class, target = Locataire.class)
 	@SubclassMapping(source = ConcessionnaireDTO.class, target = Concessionnaire.class)
-	Utilisateur toEntity(UtilisateurDTO utilisateurDTO);
+	Utilisateur toEntity(UtilisateurDTO utilisateurDTO, @Context CycleAvoidingMappingContext context);
 
 }
