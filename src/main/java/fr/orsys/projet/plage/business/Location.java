@@ -59,7 +59,6 @@ public class Location {
     @ManyToOne
     private Concessionnaire concessionnaire;
     
-    @JsonManagedReference
     @ManyToMany
     private List<Parasol> parasols;
     

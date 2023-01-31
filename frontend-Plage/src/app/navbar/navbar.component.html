@@ -9,7 +9,7 @@
     >
   </li>
 
-  <li *ngIf="authSer.isConnected()" class="nav-item">
+  <li *ngIf="authSer.isConnected() && authSer.userType() == 'Concessionnaire'" class="nav-item">
     <a
       class="nav-link"
       routerLink="/concessionnaire/locations"

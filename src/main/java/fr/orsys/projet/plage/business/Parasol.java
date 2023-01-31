@@ -40,7 +40,6 @@ public class Parasol {
 	@NotNull
 	private File file;
 
-	@JsonBackReference
 	@ManyToMany(mappedBy = "parasols")
 	private List<Location> locations;
 
