@@ -48,10 +48,4 @@ public class PaysServiceImpl implements PaysService {
 	public Optional<Pays> getPaysByCode(String code) {
 		return paysDAO.findById(code);
 	}
-
-	@Override
-	public Pays getPaysByNom(String nom) {
-		return paysDAO.findByNom(nom);
-	}
-
 }

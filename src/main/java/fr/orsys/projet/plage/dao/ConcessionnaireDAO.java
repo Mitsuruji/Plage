@@ -10,4 +10,6 @@ public interface ConcessionnaireDAO extends JpaRepository<Concessionnaire, Long>
 
 	Concessionnaire findByNumeroDeTelephone(String numeroDeTelephone);
 
+	Concessionnaire findByEmail(String email);
+
 }
