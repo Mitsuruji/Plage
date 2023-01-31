@@ -12,9 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -35,7 +32,6 @@ public class Parasol {
 	@Column(name = "num_emplacement")
 	private Byte numEmplacement;
 
-	@JsonManagedReference
 	@ManyToOne
 	@NotNull
 	private File file;

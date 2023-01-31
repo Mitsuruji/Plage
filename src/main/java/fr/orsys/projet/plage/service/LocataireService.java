@@ -8,6 +8,8 @@ public interface LocataireService {
 
 	List<LocataireDTO> getLocataires();
 	
+	LocataireDTO getLocataireByEmail(String email);
+	
 	List<LocataireDTO> getLocatairesByPaysCode(String codePays);
 
 	List<LocataireDTO> getLocatairesDeParenteId(Long idLienDeParente);

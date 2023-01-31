@@ -57,7 +57,7 @@ public class LocationServiceImpl implements LocationService {
 	
 	@Override
 	public List<LocationDTO> getLocationsByLocataire(LocataireDTO locataireDTO) {
-	    Locataire locataire = locataireMapper.toEntity(locataireDTO);
+	    Locataire locataire = locataireMapper.toEntity(locataireDTO, new CycleAvoidingMappingContext());
 	    List<Location> locations = locationDAO.findByLocataire(locataire);
 	    return locationMapper.toDtos(locations, new CycleAvoidingMappingContext());
 	}

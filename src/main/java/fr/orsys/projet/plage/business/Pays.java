@@ -34,7 +34,6 @@ public class Pays {
 	@NonNull
 	private String nom;
 	
-	@JsonBackReference
 	@OneToMany(mappedBy="pays", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Locataire> locataires;
 }

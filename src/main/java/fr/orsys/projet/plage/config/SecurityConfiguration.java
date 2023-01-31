@@ -65,6 +65,7 @@ public class SecurityConfiguration {
 				.authorizeRequests()
 				.antMatchers("/api/utilisateur/**",
 								"/api/concessionnaire/**",
+								"/api/locataire/**",
 								"/v3/api-docs/**",
 								"/swagger-resources",
 								"/swagger-resources/**",

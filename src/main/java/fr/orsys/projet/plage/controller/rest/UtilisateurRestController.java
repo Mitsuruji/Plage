@@ -18,6 +18,7 @@ import fr.orsys.projet.plage.service.UtilisateurService;
 import fr.orsys.projet.plage.util.JwtGeneratorService;
 import lombok.AllArgsConstructor;
 
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600, exposedHeaders = "**")
 @AllArgsConstructor

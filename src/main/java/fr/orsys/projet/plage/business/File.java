@@ -41,7 +41,6 @@ public class File {
 	@NonNull
 	private Double prixJournalier;
 
-	@JsonBackReference
 	@OneToMany(mappedBy = "file", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Parasol> parasols;
 

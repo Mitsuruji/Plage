@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocationsService {
-
   constructor(private http: HttpClient) {}
 
   linkConcessionnaire = 'http://localhost:8080/api/concessionnaire/locations';
+
+  linkClient = 'http://localhost:8080/api/locataire/locations';
 
   notify = new BehaviorSubject<any>('');
 
@@ -17,7 +18,7 @@ export class LocationsService {
 
   notifyOther(data: any) {
     if (data) {
-        this.notify.next(data);
+      this.notify.next(data);
     }
   }
 
@@ -25,13 +26,11 @@ export class LocationsService {
   //   return this.http.get(this.linkConcessionnaire);
   // }
 
-  getLocationsByConcessionnaire(){
+  getLocationsByConcessionnaire() {
     return this.http.get(this.linkConcessionnaire);
   }
 
   getLocationsByLocataire() {
-    throw new Error('Method not implemented.');
+    return this.http.get(this.linkClient);
   }
-
-
 }
