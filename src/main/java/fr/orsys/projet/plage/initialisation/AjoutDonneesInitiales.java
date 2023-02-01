@@ -44,19 +44,21 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-    @Transactional
+	@Transactional
 	public void run(String... args) throws Exception {
+		String salihEmail = "salih@orsys.fr";
+		String motDePasse = "12345678";
 		addFiles();
 		addParasols();
 		addLiensDeParentes();
 		addlistPays();
 		addStatuts();
 		addConcessionnaire();
-		addLocataire("salih", "salih", "salih@orsys.fr", "12345678", "FR", "aucun");
-		addLocataire("drissaoui", "amine", "amine@orsys.fr", "12345678", "IT", "cousin/cousine");
-		addLocation(6,2,"Vivement les vacances!", "salih@orsys.fr");
-		addLocation(7,4,"Vivement les vacances!", "salih@orsys.fr");
-		addLocation(5,3,"Vivement les vacances chez Peppe!!", "amine@orsys.fr");
+		addLocataire("salih", "salih", salihEmail, motDePasse, "FR", "aucun");
+		addLocataire("drissaoui", "amine", "amine@orsys.fr", motDePasse, "IT", "cousin/cousine");
+		addLocation(6, 2, "Vivement les vacances!", salihEmail);
+		addLocation(7, 4, "Vivement les vacances!", salihEmail);
+		addLocation(5, 3, "Vivement les vacances chez Peppe!!", "amine@orsys.fr");
 	}
 
 	private void addFiles() {
@@ -67,7 +69,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			fileDAO.save(file);
 		}
 	}
-	
+
 	private void addParasols() {
 		for (int i = 1; i <= 8; i++) {
 			for (int j = 1; j <= 10; j++) {
@@ -79,13 +81,11 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		}
 	}
 
-
 	private void addLiensDeParentes() {
 		lienDeParenteDAO.save(new LienDeParente("frère/sœur", 0.5F));
 		lienDeParenteDAO.save(new LienDeParente("cousin/cousine", 0.25F));
 		lienDeParenteDAO.save(new LienDeParente("aucun", 0F));
 	}
-
 
 	private void addlistPays() {
 		Pays france = new Pays("FR", "France");
@@ -96,14 +96,12 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		paysDAO.saveAll(Arrays.asList(france, italie, espagne, allemagne, angleterre));
 	}
 
-
 	private void addStatuts() {
 		Statut aTraiter = new Statut("A traiter");
 		Statut confirmee = new Statut("Confirmée");
 		Statut refusee = new Statut("Refusée");
 		statutDAO.saveAll(Arrays.asList(aTraiter, confirmee, refusee));
 	}
-
 
 	private void addConcessionnaire() {
 		Concessionnaire concessionnaire = new Concessionnaire();
@@ -112,7 +110,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		concessionnaire.setNumeroDeTelephone("+3912345678");
 		concessionnaireDAO.save(concessionnaire);
 	}
-
 
 	private void addLocataire(String nom, String prenom, String email, String motDePasse, String codePays,
 			String lienDePareString) {
@@ -126,7 +123,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		locataire.setLienDeParente(lienDeParenteDAO.findByNom(lienDePareString));
 		locataireDAO.save(locataire);
 	}
-
 
 	private void addLocation(int mouth, int days, String remarques, String emailLocataire) {
 		Location location = new Location();

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { LocationsService } from 'src/app/Services/locations.service';
+import { LocationsService } from 'src/app/services/locations.service';
 
 @Component({
-  selector: 'app-reservation',
-  templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.css'],
+  selector: 'app-locations',
+  templateUrl: './locations.component.html',
+  styleUrls: ['./locations.component.css'],
 })
-export class ReservationComponent {
+export class LocationsComponent {
   allLocations: any;
   constructor(private locationsService: LocationsService) {}
 

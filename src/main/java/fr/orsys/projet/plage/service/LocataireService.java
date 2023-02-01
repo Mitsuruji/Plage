@@ -16,7 +16,8 @@ public interface LocataireService {
 
 	List<LocataireDTO> getLocatairesByDateHeureInscriptionDesc(); 
 
-	LocataireDTO addLocataire(LocataireDTO locataireDTO);
+	LocataireDTO saveLocataire(LocataireDTO locataireDTO);
 
 	void deleteLocataire(Long id);
+
 }

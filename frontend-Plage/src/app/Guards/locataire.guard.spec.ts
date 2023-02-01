@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { ConcessionnaireGuard } from './concessionnaire.guard';
 
-describe('ConcessionnaireGuard', () => {
-  let guard: ConcessionnaireGuard;
+import { LocataireGuard } from './locataire.guard';
+
+describe('LocataireGuard', () => {
+  let guard: LocataireGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(ConcessionnaireGuard);
+    guard = TestBed.inject(LocataireGuard);
   });
 
   it('should be created', () => {

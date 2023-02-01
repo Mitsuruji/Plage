@@ -55,8 +55,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter{
 		  }
 
 		  private String parseJwt(HttpServletRequest request) throws ServletException {
-		    String jwt = jwtGeneratorService.getJwtFromLocalStorage(request);
-		    return jwt;
+		    return jwtGeneratorService.getJwtFromLocalStorage(request);
 		  }
 	
 	

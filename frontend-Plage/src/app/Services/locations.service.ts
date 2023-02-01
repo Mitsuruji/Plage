@@ -10,7 +10,7 @@ export class LocationsService {
 
   linkConcessionnaire = 'http://localhost:8080/api/concessionnaire/locations';
 
-  linkClient = 'http://localhost:8080/api/locataire/locations';
+  linkClient = 'http://localhost:8080/api/locataire/location';
 
   notify = new BehaviorSubject<any>('');
 
