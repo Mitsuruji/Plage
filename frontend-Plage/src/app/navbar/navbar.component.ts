@@ -8,4 +8,6 @@ import { AuthentificationService } from '../Services/authentification.service';
 })
 export class NavbarComponent {
   constructor(public authSer: AuthentificationService) {}
+
+  isCollapsed : boolean = true;
 }

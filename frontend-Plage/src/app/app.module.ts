@@ -17,6 +17,7 @@ import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
 import { LocationDetailComponent } from './concessionnaire/location-detail/location-detail.component';
 import { ReservationComponent } from './client/reservation/reservation.component';
 import { AddReservationComponent } from './client/add-reservation/add-reservation.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AddReservationComponent } from './client/add-reservation/add-reservatio
     PLAGE_ROUTING,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     tokenInterceptorProvider,
