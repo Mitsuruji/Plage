@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AppComponent } from './app.component';
 import { PLAGE_ROUTING } from './app.routing';
 import { HomeComponent } from './home/home.component';
@@ -14,7 +15,8 @@ import { LogoutGuard } from './guards/logout.guard';
 import { LocationsComponent } from './concessionnaire/locations/locations.component';
 import { ConcessionnaireGuard } from './guards/concessionnaire.guard';
 import { LocationDetailComponent } from './concessionnaire/location-detail/location-detail.component';
-import { AddLocationComponent } from './locataire/add-location/add-location.component';
+import { ReservationsComponent } from './locataire/reservations/reservations.component';
+import { AddReservationComponent } from './locataire/add-reservation/add-reservation.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,9 @@ import { AddLocationComponent } from './locataire/add-location/add-location.comp
     LocationsComponent,
     LocationDetailComponent,
     LocationsComponent,
-    AddLocationComponent,
-    AddLocationComponent,
+    ReservationsComponent,
+    AddReservationComponent,
+    ReservationsComponent,
   ],
   imports: [
     BrowserModule,

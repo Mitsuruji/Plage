@@ -56,7 +56,7 @@ public class LocataireRestController {
 
 	// feature 11
 	@GetMapping("/location")
-	public ResponseEntity<List<LocationDTO>> getLocations(HttpServletRequest request) {
+	public ResponseEntity<Object> getLocations(HttpServletRequest request) {
 		try {
 			String jwt = jwtGeneratorService.getJwtFromLocalStorage(request);
 			String email = jwtGeneratorService.getEmailFromJwtToken(jwt);
@@ -66,7 +66,7 @@ public class LocataireRestController {
 
 			return ResponseEntity.ok(locations);
 		} catch (UtilisateurNotFoundException | ServletException e) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 		}
 	}
 

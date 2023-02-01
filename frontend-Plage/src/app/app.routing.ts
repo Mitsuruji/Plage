@@ -1,4 +1,5 @@
-import { AddLocationComponent } from './locataire/add-location/add-location.component';
+import { AddReservationComponent } from './locataire/add-reservation/add-reservation.component';
+import { ReservationsComponent } from './locataire/reservations/reservations.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LogoutGuard } from './guards/logout.guard';
 import { HomeComponent } from './home/home.component';
@@ -30,8 +31,8 @@ const myRoutes: Routes = [
     path: 'client',
     children: [
       { path: 'register', component: RegisterComponent },
-      { path: 'reservation', component: LocationsComponent },
-      { path: 'reservation/add', component: AddLocationComponent },
+      { path: 'reservation', component: ReservationsComponent },
+      { path: 'reservation/add', component: AddReservationComponent },
     ],
   },
   { path: '**', redirectTo: '' },
