@@ -6,7 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { JwtUtilsService } from '../services/jwt-utils.service';
+import { JwtUtilsService } from '../Services/jwt-utils.service';
 
 @Injectable({
   providedIn: 'root',
