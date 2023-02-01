@@ -2,6 +2,7 @@ package fr.orsys.projet.plage.mapper;
 
 import java.util.List;
 
+import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -13,11 +14,11 @@ public interface FileMapper {
 
 	FileMapper INSTANCE = Mappers.getMapper( FileMapper.class );
 	
-	FileDTO toDto(File file);
+	FileDTO toDto(File file, @Context CycleAvoidingMappingContext context);	
 	
-	List<FileDTO> toDtos(List<File> files);
+	List<FileDTO> toDtos(List<File> files, @Context CycleAvoidingMappingContext context);	
 
-	File toEntity(FileDTO fileDTO);
+	File toEntity(FileDTO fileDTO, @Context CycleAvoidingMappingContext context);	
 	
-	List<File> toEntities(List<FileDTO> fileDTOs);
+	List<File> toEntities(List<FileDTO> fileDTOs, @Context CycleAvoidingMappingContext context);	
 }

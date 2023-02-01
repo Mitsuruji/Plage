@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FilesService } from 'src/app/services/files.service';
+import { File } from 'src/app/models/file.model';
 
 @Component({
   selector: 'app-add-reservation',
@@ -8,13 +10,12 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddReservationComponent {
   reservationForm!: FormGroup;
-  parasolOptions = [
-    { value: 'parasol-1', display: 'Parasol 1' },
-    { value: 'parasol-2', display: 'Parasol 2' },
-    { value: 'parasol-3', display: 'Parasol 3' },
-  ];
+  files!: File[];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private fileService: FilesService
+  ) {}
 
   ngOnInit() {
     this.reservationForm = this.formBuilder.group({
@@ -22,6 +23,12 @@ export class AddReservationComponent {
       endDate: [null, Validators.required],
       parasols: this.formBuilder.array([this.createParasol()]),
       comments: null,
+    });
+    this.fileService.getAllFiles().subscribe({
+      next: (response) => {
+        this.files = response as File[];
+        console.log(this.files);
+      },
     });
   }
 

@@ -1,33 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable, Subject } from 'rxjs';
+import { Locataire } from '../models/locataire.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocatairesService {
+  private locataires = new Subject<Locataire[]>();
+  private linkLocataire = 'http://localhost:8080/api/file';
+
   constructor(private http: HttpClient) {}
 
-  // linkClient = 'http://localhost:8080/api/locataire/locations';
+  files$ = this.locataires.asObservable();
 
-  // notify = new BehaviorSubject<any>('');
-
-  // notifyObservable$ = this.notify.asObservable();
-
-  // notifyOther(data: any) {
-  //   if (data) {
-  //     this.notify.next(data);
-  //   }
-  // }
-
-  // // getLocationById(id: number) {
-  // //   return this.http.get(this.linkConcessionnaire);
-  // // }
-
-  // getLocationsByConcessionnaire() {
-  //   return this.http.get(this.linkConcessionnaire);
-  // }
-
-  // getLocationsByLocataire() {
-  //   return this.http.get(this.linkClient);
-  // }
+  getAllFiles(): Observable<Locataire[]> {
+    return this.http.get<Locataire[]>(this.linkLocataire).pipe(
+      map((locataire: Locataire[]) => {
+        this.locataires.next(locataire);
+        return locataire;
+      })
+    );
+  }
 }

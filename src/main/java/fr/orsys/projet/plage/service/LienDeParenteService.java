@@ -6,6 +6,7 @@ import java.util.Optional;
 import fr.orsys.projet.plage.business.LienDeParente;
 import fr.orsys.projet.plage.dto.LienDeParenteDTO;
 
+
 public interface LienDeParenteService {
 
 	LienDeParente addLienDeParente(String nom, float coefficient);
@@ -14,7 +15,7 @@ public interface LienDeParenteService {
 	
 	LienDeParente saveLienDeParente(LienDeParenteDTO lienDeParenteDTO);
 	
-	List<LienDeParente> getLienDeParentes();
+	List<LienDeParenteDTO> getLienDeParentes();
 	
 	Optional<LienDeParente> getLienDeParente(Long id);
 	

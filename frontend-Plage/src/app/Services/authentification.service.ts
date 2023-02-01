@@ -7,6 +7,7 @@ import { JwtUtilsService } from './jwt-utils.service';
 })
 export class AuthentificationService {
   link = 'http://localhost:8080/api/utilisateur/authentification';
+  linkRegister = 'http://localhost:8080/api/utilisateur/inscription';
 
   constructor(
     private http: HttpClient,
@@ -19,6 +20,10 @@ export class AuthentificationService {
 
   disconnect() {
     localStorage.removeItem('myToken');
+  }
+
+  register(f: any) {
+    return this.http.post(this.link, f);
   }
 
   isConnected() {

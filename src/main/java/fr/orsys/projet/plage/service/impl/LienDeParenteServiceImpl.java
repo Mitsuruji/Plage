@@ -39,8 +39,8 @@ public class LienDeParenteServiceImpl implements LienDeParenteService {
 	}
 
 	@Override
-	public List<LienDeParente> getLienDeParentes() {
-		return lienDeParenteDAO.findAll();
+	public List<LienDeParenteDTO> getLienDeParentes() {
+		return lienDeParenteMapper.toDtos(lienDeParenteDAO.findAll());
 	}
 
 	@Override

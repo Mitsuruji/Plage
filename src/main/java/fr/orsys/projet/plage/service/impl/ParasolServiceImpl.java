@@ -11,6 +11,7 @@ import fr.orsys.projet.plage.business.Parasol;
 import fr.orsys.projet.plage.dao.ParasolDAO;
 import fr.orsys.projet.plage.dto.ParasolDTO;
 import fr.orsys.projet.plage.exception.ParasolExistException;
+import fr.orsys.projet.plage.mapper.CycleAvoidingMappingContext;
 import fr.orsys.projet.plage.mapper.ParasolMapper;
 import fr.orsys.projet.plage.service.ParasolService;
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ public class ParasolServiceImpl implements ParasolService {
 
 	@Override
 	public Parasol saveParasol(ParasolDTO parasolDTO) {
-		Parasol parasol = parasolMapper.toEntity(parasolDTO);
+		Parasol parasol = parasolMapper.toEntity(parasolDTO, new CycleAvoidingMappingContext());
 		return parasolDAO.save(parasol);
 	}
 
@@ -48,7 +49,7 @@ public class ParasolServiceImpl implements ParasolService {
 	
 	@Override
 	public List<ParasolDTO> getParasolsDTO() {
-		return parasolMapper.toDtos(parasolDAO.findAll());
+		return parasolMapper.toDtos(parasolDAO.findAll(), new CycleAvoidingMappingContext());
 	}
 
 	@Override

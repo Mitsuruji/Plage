@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LocationsService } from 'src/app/services/locations.service';
+import { Location } from '../../models/location.model';
 
 @Component({
   selector: 'app-reservations',
@@ -7,17 +8,18 @@ import { LocationsService } from 'src/app/services/locations.service';
   styleUrls: ['./reservations.component.css'],
 })
 export class ReservationsComponent {
-  allReservations: any;
+  firstLocation!: Location;
+  allLocations!: Location[];
+  router: any;
+
   constructor(private locationsService: LocationsService) {}
 
   ngOnInit() {
     this.locationsService.getLocationsByLocataire().subscribe({
       next: (response) => {
-        this.allReservations = response;
-        console.log(this.allReservations);
+        this.allLocations = response as Location[];
+        this.firstLocation = this.allLocations[0];
       },
     });
   }
-
-  showDetailLocation() {}
 }
