@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LiensService {
   private liens = new Subject<LienDeParente[]>();
-  private linkLien = 'http://localhost:8080/api/lien';
+  private linkLien = 'http://localhost:8080/api/lien-de-parente';
 
   constructor(private http: HttpClient) {}
 

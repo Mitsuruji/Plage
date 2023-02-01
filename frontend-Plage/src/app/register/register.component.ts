@@ -28,7 +28,6 @@ export class RegisterComponent {
     this.paysService.getAllPays().subscribe({
       next: (response) => {
         this.listPays = response as Pays[];
-        console.log(this.listPays);
       },
     });
     this.liensService.getAllLiens().subscribe({

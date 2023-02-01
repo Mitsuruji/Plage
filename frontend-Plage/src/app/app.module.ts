@@ -34,6 +34,7 @@ import { FormatDatePipe } from './Pipes/format-date.pipe';
     ReservationsComponent,
     AddReservationComponent,
     FormatDatePipe,
+    ClientsComponent,
   ],
   imports: [
     BrowserModule,

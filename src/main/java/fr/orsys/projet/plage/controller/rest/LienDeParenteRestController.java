@@ -27,8 +27,8 @@ public class LienDeParenteRestController {
 	@GetMapping("")
 	public ResponseEntity<Object> getLiens(HttpServletRequest request) {
 		try {
-			List<LienDeParenteDTO> listFileDTO = lienDeParenteService.getLienDeParentes();
-			return ResponseEntity.ok(listFileDTO);
+			List<LienDeParenteDTO> listLienDTO = lienDeParenteService.getLienDeParentes();
+			return ResponseEntity.ok(listLienDTO);
 		} catch (FileNotFoundException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 		}

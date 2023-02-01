@@ -7,6 +7,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,14 +48,16 @@ public class SecurityConfiguration {
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}
+	
 
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers("/api/utilisateur/**", "/api/concessionnaire/**", "/api/locataire/**", "/api/pays/**",
-						"/api/file/**", "/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**",
-						"/configuration/ui", "/configuration/security", "/swagger-ui/**", "/webjars/**", "/swagger-ui")
+						"/api/lien-de-parente", "/api/file/**", "/v3/api-docs/**", "/swagger-resources",
+						"/swagger-resources/**", "/configuration/ui", "/configuration/security", "/swagger-ui/**",
+						"/webjars/**", "/swagger-ui")
 				.permitAll().anyRequest().authenticated();
 
 		http.authenticationProvider(authenticationProvider());
