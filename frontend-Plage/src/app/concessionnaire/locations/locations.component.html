@@ -11,6 +11,7 @@
         <th>Email</th>
         <th>Lien de Parenté</th>
         <th>Statut</th>
+        <th>Date de début</th>
       </tr>
     </thead>
     <tbody class="table-warning">
@@ -18,9 +19,10 @@
         <td>{{ location.locataire.prenom }} {{ location.locataire.nom }}</td>
         <td>{{ location.locataire.email }}</td>
         <td>{{ location.locataire.lienDeParente.nom }}</td>
-        <td routerLink="../location-details" routerLinkActive="active">
-          {{ location.locataire.statut }}
+        <td (click)="showDetailsLocation(location)" routerLink="../location-details" routerLinkActive="active">
+          {{ location.statut.nom }}
         </td>
+        <td>{{ location.dateHeureDebut | formatDate}}</td>
       </tr>
     </tbody>
   </table>

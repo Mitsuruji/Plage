@@ -16,15 +16,21 @@ export class LocationsService {
 
   notifyObservable$ = this.notify.asObservable();
 
+  selectedLocation: any;
+
   notifyOther(data: any) {
     if (data) {
       this.notify.next(data);
     }
   }
 
-  // getLocationById(id: number) {
-  //   return this.http.get(this.linkConcessionnaire);
-  // }
+  getSelectedLocation(){
+    return this.selectedLocation;
+  }
+
+  setSelectedLocation(location : any) {
+    this.selectedLocation = location;
+  }
 
   getLocationsByConcessionnaire() {
     return this.http.get(this.linkConcessionnaire);

@@ -8,7 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { LocationsComponent } from './concessionnaire/locations/locations.component';
 import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
 import { LocationDetailComponent } from './concessionnaire/location-detail/location-detail.component';
-import { LocataireGuard } from './guards/locataire.guard';
+import { LocataireGuard } from './Guards/locataire.guard';
 
 const myRoutes: Routes = [
   { path: '', component: HomeComponent },

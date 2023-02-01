@@ -18,6 +18,7 @@ import { AddReservationComponent } from './locataire/add-reservation/add-reserva
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
 import { LogoutGuard } from './Guards/logout.guard';
+import { FormatDatePipe } from './Pipes/format-date.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LogoutGuard } from './Guards/logout.guard';
     LocationsComponent,
     ReservationsComponent,
     AddReservationComponent,
+    FormatDatePipe,
   ],
   imports: [
     BrowserModule,

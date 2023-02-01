@@ -54,11 +54,11 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		addlistPays();
 		addStatuts();
 		addConcessionnaire();
-		addLocataire("salih", "salih", salihEmail, motDePasse, "FR", "aucun");
-		addLocataire("drissaoui", "amine", "amine@orsys.fr", motDePasse, "IT", "cousin/cousine");
-		addLocation(6, 2, "Vivement les vacances!", salihEmail,"A traiter");
-		addLocation(7, 4, "Vivement les vacances!", salihEmail,"Confirmée");
-		addLocation(5, 3, "Vivement les vacances chez Peppe!!", "amine@orsys.fr","Refusée");
+		addLocataire("Cel.", "Salih", salihEmail, motDePasse, "FR", "aucun");
+		addLocataire("Drissaoui", "Amine", "amine@orsys.fr", motDePasse, "IT", "cousin/cousine");
+		addLocation(6, 2, "Vivement les vacances!", salihEmail,"A traiter", Double.valueOf(330));
+		addLocation(7, 4, "Vivement les vacances!", salihEmail,"Confirmée", Double.valueOf(480));
+		addLocation(5, 3, "Vivement les vacances chez Peppe!!", "amine@orsys.fr","Refusée", Double.valueOf(360));
 	}
 
 	private void addFiles() {
@@ -124,10 +124,10 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		locataireDAO.save(locataire);
 	}
 
-	private void addLocation(int mouth, int days, String remarques, String emailLocataire, String statut) {
+	private void addLocation(int month, int days, String remarques, String emailLocataire, String statut, Double montant) {
 		Location location = new Location();
-		location.setDateHeureDebut(LocalDateTime.now().plusMonths(mouth));
-		location.setDateHeureFin(LocalDateTime.now().plusMonths(mouth).plusDays(days));
+		location.setDateHeureDebut(LocalDateTime.now().plusMonths(month));
+		location.setDateHeureFin(LocalDateTime.now().plusMonths(month).plusDays(days));
 		location.setRemarques(remarques);
 		location.setConcessionnaire(concessionnaireDAO.findByEmail("peppe@orsys.fr"));
 		Locataire locataire = locataireDAO.findByEmail(emailLocataire);
@@ -137,6 +137,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 3));
 		location.setParasols(parasols);
 		location.setStatut(statutDAO.findByNom(statut));
+		location.setMontantAReglerEnEuros(montant);
 		locationDAO.save(location);
 	}
 

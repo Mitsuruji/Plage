@@ -19,5 +19,7 @@ export class LocationsComponent {
     });
   }
 
-  showDetailLocation() {}
+  showDetailsLocation(location : any) {
+    this.locationsService.setSelectedLocation(location);
+  }
 }
