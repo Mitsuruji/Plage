@@ -10,14 +10,15 @@ import { tokenInterceptorProvider } from './Interceptor/access-token.interceptor
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginGuard } from './Guards/login.guard';
+import { LoginGuard } from './guards/login.guard';
 import { LocationsComponent } from './concessionnaire/locations/locations.component';
 import { LocationDetailComponent } from './concessionnaire/location-detail/location-detail.component';
 import { ReservationsComponent } from './locataire/reservations/reservations.component';
 import { AddReservationComponent } from './locataire/add-reservation/add-reservation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
-import { LogoutGuard } from './Guards/logout.guard';
+import { ConcessionnaireGuard } from './guards/concessionnaire.guard';
+import { LogoutGuard } from './guards/logout.guard';
+import { ClientsComponent } from './concessionnaire/clients/clients.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LogoutGuard } from './Guards/logout.guard';
     LocationsComponent,
     ReservationsComponent,
     AddReservationComponent,
+    ClientsComponent,
   ],
   imports: [
     BrowserModule,

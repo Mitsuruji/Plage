@@ -1,7 +1,7 @@
 <div class="row">
   <div class="container mt-5">
     <h2>Inscription Client</h2>
-    <form #registrationForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
       <div class="form-group">
         <label for="nom">Nom</label>
         <input
@@ -63,7 +63,9 @@
           ngModel
           required
         >
-          <option *ngFor="let pays of listPays">{{ pays.nom }}</option>
+          <option *ngFor="let pays of listPays" [ngValue]="pays">
+            {{ pays.nom }}
+          </option>
         </select>
         <div
           *ngIf="!inpPays.valid && inpPays.touched"
@@ -78,13 +80,13 @@
           #inpLien="ngModel"
           class="form-control"
           id="lien"
-          name="lien"
+          name="lienDeParente"
           ngModel
           required
         >
-          <option value="Frère/Sœur">Frère/Sœur</option>
-          <option value="Cousin/Cousine">Cousin/Cousine</option>
-          <option value="Aucun">Aucun</option>
+          <option *ngFor="let lien of liens" [ngValue]="lien">
+            {{ lien.nom }}
+          </option>
         </select>
         <div
           *ngIf="!inpLien.valid && inpLien.touched"

@@ -53,8 +53,8 @@ public class SecurityConfiguration {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers("/api/utilisateur/**", "/api/concessionnaire/**", "/api/locataire/**", "/api/pays/**",
-						"/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
-						"/configuration/security", "/swagger-ui/**", "/webjars/**", "/swagger-ui")
+						"/api/file/**", "/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**",
+						"/configuration/ui", "/configuration/security", "/swagger-ui/**", "/webjars/**", "/swagger-ui")
 				.permitAll().anyRequest().authenticated();
 
 		http.authenticationProvider(authenticationProvider());

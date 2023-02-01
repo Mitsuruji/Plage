@@ -2,6 +2,7 @@ package fr.orsys.projet.plage.mapper;
 
 import java.util.List;
 
+import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -13,11 +14,11 @@ public interface ParasolMapper {
 
 	ParasolMapper INSTANCE = Mappers.getMapper( ParasolMapper.class );
 	
-	ParasolDTO toDto(Parasol parasol);
+	ParasolDTO toDto(Parasol parasol, @Context CycleAvoidingMappingContext context);	
 	
-	List<ParasolDTO> toDtos(List<Parasol> parasols);
+	List<ParasolDTO> toDtos(List<Parasol> parasols, @Context CycleAvoidingMappingContext context);	
 
-	Parasol toEntity(ParasolDTO parasolDTO);
+	Parasol toEntity(ParasolDTO parasolDTO, @Context CycleAvoidingMappingContext context);	
 	
-	List<Parasol> toEntities(List<ParasolDTO> parasolDTOs);
+	List<Parasol> toEntities(List<ParasolDTO> parasolDTOs, @Context CycleAvoidingMappingContext context);	
 }

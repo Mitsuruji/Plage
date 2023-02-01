@@ -1,5 +1,7 @@
 package fr.orsys.projet.plage.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -12,6 +14,8 @@ public interface LienDeParenteMapper {
 	LienDeParenteMapper INSTANCE = Mappers.getMapper( LienDeParenteMapper.class );
 	
 	LienDeParenteDTO toDto(LienDeParente lienDeParente); 
+	
+	List<LienDeParenteDTO> toDtos(List<LienDeParente> lienDeParentes); 
 
 	LienDeParente toEntity(LienDeParenteDTO lienDeParenteDTO);
 }

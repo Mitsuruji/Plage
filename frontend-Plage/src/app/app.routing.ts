@@ -1,14 +1,15 @@
+import { ClientsComponent } from './concessionnaire/clients/clients.component';
 import { AddReservationComponent } from './locataire/add-reservation/add-reservation.component';
 import { ReservationsComponent } from './locataire/reservations/reservations.component';
 import { RouterModule, Routes } from '@angular/router';
-import { LogoutGuard } from './Guards/logout.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LocationsComponent } from './concessionnaire/locations/locations.component';
-import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
 import { LocationDetailComponent } from './concessionnaire/location-detail/location-detail.component';
 import { LocataireGuard } from './guards/locataire.guard';
+import { LogoutGuard } from './guards/logout.guard';
+import { ConcessionnaireGuard } from './guards/concessionnaire.guard';
 
 const myRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,11 @@ const myRoutes: Routes = [
       {
         path: 'location-details',
         component: LocationDetailComponent,
+        canActivate: [ConcessionnaireGuard],
+      },
+      {
+        path: 'clients',
+        component: ClientsComponent,
         canActivate: [ConcessionnaireGuard],
       },
     ],
