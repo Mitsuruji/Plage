@@ -52,11 +52,10 @@ public class SecurityConfiguration {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/api/utilisateur/**", "/api/concessionnaire/**", "/api/locataire/**", "/v3/api-docs/**",
-						"/swagger-resources", "/swagger-resources/**", "/configuration/ui", "/configuration/security",
-						"/swagger-ui/**", "/webjars/**", "/swagger-ui")
+				.antMatchers("/api/utilisateur/**", "/api/concessionnaire/**", "/api/locataire/**", "/api/pays/**",
+						"/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
+						"/configuration/security", "/swagger-ui/**", "/webjars/**", "/swagger-ui")
 				.permitAll().anyRequest().authenticated();
-
 
 		http.authenticationProvider(authenticationProvider());
 

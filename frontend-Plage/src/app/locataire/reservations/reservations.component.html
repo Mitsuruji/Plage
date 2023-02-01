@@ -7,20 +7,18 @@
   >
     <thead class="table-primary">
       <tr>
-        <th>Locataire</th>
-        <th>Email</th>
-        <th>Lien de Parenté</th>
-        <th>Statut</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>Parasols</th>
+        <th>Remarques</th>
       </tr>
     </thead>
     <tbody class="table-warning">
-      <tr *ngFor="let location of allLocations">
-        <td>{{ location.locataire.prenom }} {{ location.locataire.nom }}</td>
-        <td>{{ location.locataire.email }}</td>
-        <td>{{ location.locataire.lienDeParente.nom }}</td>
-        <td routerLink="../location-details" routerLinkActive="active">
-          {{ location.locataire.statut }}
-        </td>
+      <tr *ngFor="let reservation of allReservations">
+        <td>{{ reservation.startDate }}</td>
+        <td>{{ reservation.endDate }}</td>
+        <td>{{ reservation.parasols }}</td>
+        <td>{{ reservation.comments }}</td>
       </tr>
     </tbody>
   </table>

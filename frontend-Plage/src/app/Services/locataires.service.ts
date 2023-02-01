@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
 export class LocatairesService {
   constructor(private http: HttpClient) {}
 
-  // linkConcessionnaire = 'http://localhost:8080/api/concessionnaire/locations';
-
   // linkClient = 'http://localhost:8080/api/locataire/locations';
 
   // notify = new BehaviorSubject<any>('');

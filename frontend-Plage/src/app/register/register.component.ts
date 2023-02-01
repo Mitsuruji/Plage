@@ -9,11 +9,25 @@ import { PaysService } from '../services/pays.service';
 })
 export class RegisterComponent {
   showError = false;
-  listPays = ['France', 'Allemagne', 'Espagne', 'Italie', 'Suisse'];
+  listPays: any;
+  registrationForm: any;
 
   constructor(private paysService: PaysService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.paysService.getAllPays().subscribe({
+      next: (response) => {
+        this.listPays = response;
+        console.log(this.listPays);
+      },
+    });
+  }
 
-  onSubmit() {}
+  onSubmit() {
+    // this.http
+    //   .post('url_to_send_data_to', this.registrationForm.value)
+    //   .subscribe((res: any) => {
+    //     console.log('Form data sent successfully:', res);
+    //   });
+  }
 }

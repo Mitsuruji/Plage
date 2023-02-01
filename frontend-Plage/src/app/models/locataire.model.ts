@@ -5,5 +5,4 @@ import { Utilisateur } from './utilisateur.model';
 export class Locataire extends Utilisateur {
   pays!: Pays;
   lienDeParente!: LienDeParente[];
-  locations!: Location[];
 }
