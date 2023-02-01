@@ -1,4 +1,4 @@
-import { LienDeParente } from './../models/lien-de-parente.model';
+import { LienDeParente } from '../models/lien-de-parente.model';
 import { Injectable } from '@angular/core';
 import { map, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

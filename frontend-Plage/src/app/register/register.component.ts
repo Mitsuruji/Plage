@@ -1,7 +1,7 @@
-import { LiensService } from './../services/liens.service';
+import { LiensService } from '../services/liens.service';
 import { LienDeParente } from './../models/lien-de-parente.model';
 import { FilesService } from 'src/app/services/files.service';
-import { AuthentificationService } from './../services/authentification.service';
+import { AuthentificationService } from '../services/authentification.service';
 import { Component } from '@angular/core';
 import { Pays } from '../models/pays.model';
 import { PaysService } from '../services/pays.service';
