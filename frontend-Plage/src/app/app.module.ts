@@ -30,7 +30,7 @@ import { LogoutGuard } from './Guards/logout.guard';
     LocationDetailComponent,
     LocationsComponent,
     ReservationsComponent,
-    AddReservationComponent
+    AddReservationComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +38,7 @@ import { LogoutGuard } from './Guards/logout.guard';
     PLAGE_ROUTING,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
     tokenInterceptorProvider,

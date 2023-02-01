@@ -40,8 +40,8 @@ public class PaysServiceImpl implements PaysService {
 	}
 	
 	@Override
-	public List<Pays> getTousPays() {
-		return paysDAO.findAll();
+	public List<PaysDTO> getAllPays() {
+		return paysMapper.toDtos(paysDAO.findAll());
 	}
 
 	@Override

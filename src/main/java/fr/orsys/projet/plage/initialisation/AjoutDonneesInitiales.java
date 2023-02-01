@@ -136,6 +136,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 2),
 				parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 3));
 		location.setParasols(parasols);
+		location.setStatut(statutDAO.findByNom("Refusée"));
 		locationDAO.save(location);
 	}
 

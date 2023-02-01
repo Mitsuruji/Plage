@@ -14,7 +14,7 @@ public interface PaysService {
 	
 	Pays savePays(PaysDTO paysDTO);
 	
-	List<Pays> getTousPays();
+	List<PaysDTO> getAllPays();
 	
 	Optional<Pays> getPaysByCode(String code);
 	

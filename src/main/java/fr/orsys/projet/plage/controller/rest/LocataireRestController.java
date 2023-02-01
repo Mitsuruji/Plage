@@ -43,9 +43,9 @@ public class LocataireRestController {
 	private JwtGeneratorService jwtGeneratorService;
 
 	// feature 10
-	@PostMapping("inscription")
+	@PostMapping("register")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<LocataireDTO> login(@RequestBody LocataireDTO locataireDTO) {
+	public ResponseEntity<LocataireDTO> saveLocataire(@RequestBody LocataireDTO locataireDTO) {
 		try {
 			LocataireDTO locataireSaved = locataireService.saveLocataire(locataireDTO);
 			return ResponseEntity.ok(locataireSaved);
@@ -55,7 +55,7 @@ public class LocataireRestController {
 	}
 
 	// feature 11
-	@GetMapping("/location")
+	@GetMapping("location")
 	public ResponseEntity<Object> getLocations(HttpServletRequest request) {
 		try {
 			String jwt = jwtGeneratorService.getJwtFromLocalStorage(request);

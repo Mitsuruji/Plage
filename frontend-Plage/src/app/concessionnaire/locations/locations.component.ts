@@ -11,7 +11,7 @@ export class LocationsComponent {
   constructor(private locationsService: LocationsService) {}
 
   ngOnInit() {
-    this.locationsService.getLocationsByLocataire().subscribe({
+    this.locationsService.getLocationsByConcessionnaire().subscribe({
       next: (response) => {
         this.allLocations = response;
         console.log(this.allLocations);

@@ -7,14 +7,14 @@ import { LocationsService } from 'src/app/services/locations.service';
   styleUrls: ['./reservations.component.css'],
 })
 export class ReservationsComponent {
-  allLocations: any;
+  allReservations: any;
   constructor(private locationsService: LocationsService) {}
 
   ngOnInit() {
     this.locationsService.getLocationsByLocataire().subscribe({
       next: (response) => {
-        this.allLocations = response;
-        console.log(this.allLocations);
+        this.allReservations = response;
+        console.log(this.allReservations);
       },
     });
   }

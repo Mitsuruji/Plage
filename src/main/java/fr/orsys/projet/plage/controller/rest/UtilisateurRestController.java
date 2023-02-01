@@ -56,9 +56,9 @@ public class UtilisateurRestController {
 
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
-			return new ResponseEntity<>(jwtGenerator.generateToken(userData), HttpStatus.OK);
+			return ResponseEntity.ok(jwtGenerator.generateToken(userData));
 		} catch (UtilisateurNotFoundException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 		}
 	}
 

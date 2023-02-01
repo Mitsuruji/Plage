@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { LocationsComponent } from './concessionnaire/locations/locations.component';
 import { ConcessionnaireGuard } from './Guards/concessionnaire.guard';
 import { LocationDetailComponent } from './concessionnaire/location-detail/location-detail.component';
+import { LocataireGuard } from './guards/locataire.guard';
 
 const myRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,8 +32,16 @@ const myRoutes: Routes = [
     path: 'client',
     children: [
       { path: 'register', component: RegisterComponent },
-      { path: 'reservation', component: ReservationsComponent },
-      { path: 'reservation/add', component: AddReservationComponent },
+      {
+        path: 'reservation',
+        component: ReservationsComponent,
+        canActivate: [LocataireGuard],
+      },
+      {
+        path: 'reservation/add',
+        component: AddReservationComponent,
+        canActivate: [LocataireGuard],
+      },
     ],
   },
   { path: '**', redirectTo: '' },
