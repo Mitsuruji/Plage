@@ -56,9 +56,9 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		addConcessionnaire();
 		addLocataire("salih", "salih", salihEmail, motDePasse, "FR", "aucun");
 		addLocataire("drissaoui", "amine", "amine@orsys.fr", motDePasse, "IT", "cousin/cousine");
-		addLocation(6, 2, "Vivement les vacances!", salihEmail);
-		addLocation(7, 4, "Vivement les vacances!", salihEmail);
-		addLocation(5, 3, "Vivement les vacances chez Peppe!!", "amine@orsys.fr");
+		addLocation(6, 2, "Vivement les vacances!", salihEmail,"A traiter");
+		addLocation(7, 4, "Vivement les vacances!", salihEmail,"Confirmée");
+		addLocation(5, 3, "Vivement les vacances chez Peppe!!", "amine@orsys.fr","Refusée");
 	}
 
 	private void addFiles() {
@@ -124,7 +124,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		locataireDAO.save(locataire);
 	}
 
-	private void addLocation(int mouth, int days, String remarques, String emailLocataire) {
+	private void addLocation(int mouth, int days, String remarques, String emailLocataire, String statut) {
 		Location location = new Location();
 		location.setDateHeureDebut(LocalDateTime.now().plusMonths(mouth));
 		location.setDateHeureFin(LocalDateTime.now().plusMonths(mouth).plusDays(days));
@@ -136,7 +136,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 2),
 				parasolDAO.findByNumEmplacementAndFileNumero((byte) 1, (byte) 3));
 		location.setParasols(parasols);
-		location.setStatut(statutDAO.findByNom("Refusée"));
+		location.setStatut(statutDAO.findByNom(statut));
 		locationDAO.save(location);
 	}
 
