@@ -14,8 +14,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;

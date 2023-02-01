@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import fr.orsys.projet.plage.business.Locataire;
 import fr.orsys.projet.plage.dao.LocataireDAO;
+import fr.orsys.projet.plage.dao.UtilisateurDAO;
 import fr.orsys.projet.plage.dto.LocataireDTO;
+import fr.orsys.projet.plage.exception.UtilisateurExistException;
 import fr.orsys.projet.plage.mapper.CycleAvoidingMappingContext;
 import fr.orsys.projet.plage.mapper.LocataireMapper;
 import fr.orsys.projet.plage.service.LocataireService;
@@ -17,6 +19,7 @@ import lombok.AllArgsConstructor;
 public class LocataireServiceImpl implements LocataireService {
 
 	private final LocataireDAO locataireDAO;
+	private final UtilisateurDAO utilisateurDAO;
 	private final LocataireMapper locataireMapper;
 
 	@Override
@@ -40,7 +43,10 @@ public class LocataireServiceImpl implements LocataireService {
 	}
 
 	@Override
-	public LocataireDTO addLocataire(LocataireDTO locataireDTO) {
+	public LocataireDTO saveLocataire(LocataireDTO locataireDTO) {
+		if (utilisateurDAO.existsByEmail(locataireDTO.getEmail())) {
+			throw new UtilisateurExistException("Ce client est déjà présent en base");
+		}
 		Locataire locataire = locataireMapper.toEntity(locataireDTO, new CycleAvoidingMappingContext());
 		return locataireMapper.toDto(locataireDAO.save(locataire), new CycleAvoidingMappingContext());
 	}

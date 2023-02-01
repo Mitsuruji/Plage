@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Concessionnaire } from '../models/concessionnaire.model';
+import { Locataire } from '../models/locataire.model';
 import { JwtUtilsService } from './jwt-utils.service';
-import { Concessionnaire } from './../model/concessionnaire.model';
-import { Locataire } from './../model/locataire.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,10 @@ import { Locataire } from './../model/locataire.model';
 export class AuthentificationService {
   link = 'http://localhost:8080/api/utilisateur/authentification';
 
-  constructor(private http: HttpClient, private jwtUtilsService: JwtUtilsService) {}
+  constructor(
+    private http: HttpClient,
+    private jwtUtilsService: JwtUtilsService
+  ) {}
 
   connect(identifiants: any) {
     return this.http.post(this.link, identifiants);
@@ -26,16 +29,16 @@ export class AuthentificationService {
     else return false;
   }
 
-  userType(){
+  userType() {
     let token = localStorage.getItem('myToken')!;
     const jws = this.jwtUtilsService.getDecodedAccessToken(token);
 
-    if (token && jws.type == 'Concessionnaire'){
-      return 'Concessionnaire'
-    } else if (token && jws.type == 'Locataire'){
-      return 'Locataire'
+    if (token && jws.type == 'Concessionnaire') {
+      return 'Concessionnaire';
+    } else if (token && jws.type == 'Locataire') {
+      return 'Locataire';
     } else {
-      return 'Unknown'
+      return 'Unknown';
     }
   }
 }

@@ -18,7 +18,6 @@ import fr.orsys.projet.plage.service.UtilisateurService;
 import fr.orsys.projet.plage.util.JwtGeneratorService;
 import lombok.AllArgsConstructor;
 
-
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600, exposedHeaders = "**")
 @AllArgsConstructor
@@ -29,7 +28,7 @@ public class UtilisateurRestController {
 	private JwtGeneratorService jwtGenerator;
 	private AuthenticationManager authenticationManager;
 
-	@PostMapping("/inscription")
+	@PostMapping("inscription")
 	public ResponseEntity<Object> postUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
 		try {
 			utilisateurService.saveUtilisateur(utilisateurDTO);
@@ -39,7 +38,7 @@ public class UtilisateurRestController {
 		}
 	}
 
-	@PostMapping("/authentification")
+	@PostMapping("authentification")
 	public ResponseEntity<Object> loginUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
 		try {
 			if (utilisateurDTO.getEmail() == null || utilisateurDTO.getMotDePasse() == null) {
@@ -51,16 +50,12 @@ public class UtilisateurRestController {
 			if (userData == null) {
 				throw new UtilisateurNotFoundException("Email ou mot de passe invalides");
 			}
-			
+
 			Authentication authentication = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(utilisateurDTO.getEmail(), utilisateurDTO.getMotDePasse()));
-			
+
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
-//			UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-			System.out.println(jwtGenerator.generateToken(userData));
-			
 			return new ResponseEntity<>(jwtGenerator.generateToken(userData), HttpStatus.OK);
 		} catch (UtilisateurNotFoundException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);

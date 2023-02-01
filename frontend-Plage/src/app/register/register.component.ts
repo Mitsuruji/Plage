@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Pays } from '../model/pays.model';
-import { PaysService } from '../Services/pays.service';
+import { Pays } from '../models/pays.model';
+import { PaysService } from '../services/pays.service';
 
 @Component({
   selector: 'app-register',

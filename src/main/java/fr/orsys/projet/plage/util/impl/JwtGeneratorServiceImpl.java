@@ -1,7 +1,6 @@
 package fr.orsys.projet.plage.util.impl;
 
 import java.security.Key;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,10 +84,7 @@ public class JwtGeneratorServiceImpl implements JwtGeneratorService {
 	public String getJwtFromLocalStorage(HttpServletRequest request) throws ServletException {
 		String authHeader = request.getHeader("Authorization");
 		if (authHeader != null && authHeader.startsWith("Bearer ")) {
-			String token = authHeader.substring(7);
-//			Base64.Decoder decoder = Base64.getUrlDecoder();
-//			return new String(decoder.decode(token));
-			return token;
+			return authHeader.substring(7);
 		} else {
 			if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 				throw new ServletException("An exception occurred");

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-reservation',
-  templateUrl: './add-reservation.component.html',
-  styleUrls: ['./add-reservation.component.css'],
+  selector: 'app-add-location',
+  templateUrl: './add-location.component.html',
+  styleUrls: ['./add-location.component.css'],
 })
-export class AddReservationComponent {
+export class AddLocationComponent {
   reservationForm!: FormGroup;
   parasolOptions = [
     { value: 'parasol-1', display: 'Parasol 1' },
