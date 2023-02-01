@@ -17,6 +17,7 @@ import { ConcessionnaireGuard } from './guards/concessionnaire.guard';
 import { LocationDetailComponent } from './concessionnaire/location-detail/location-detail.component';
 import { ReservationsComponent } from './locataire/reservations/reservations.component';
 import { AddReservationComponent } from './locataire/add-reservation/add-reservation.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,6 @@ import { AddReservationComponent } from './locataire/add-reservation/add-reserva
     LocationsComponent,
     ReservationsComponent,
     AddReservationComponent,
-    ReservationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +38,7 @@ import { AddReservationComponent } from './locataire/add-reservation/add-reserva
     PLAGE_ROUTING,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [
     tokenInterceptorProvider,
