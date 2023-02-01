@@ -11,11 +11,9 @@ export class LocationDetailComponent {
 
   constructor(private locationsService: LocationsService) {}
 
-  // ngOnInit(){
-  //   this.locationsService.notifyObservable$.subscribe(res => {
-  //     if(res.refresh){
-  //       this.locationDetails = this.locationsService.getLocationById(1);
-  //     }
-  //   })
-  // }
+  ngOnInit(){
+    this.locationDetails = this.locationsService.getSelectedLocation();
+    console.log(this.locationDetails)
+    
+  }
 }

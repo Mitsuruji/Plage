@@ -19,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConcessionnaireGuard } from './guards/concessionnaire.guard';
 import { LogoutGuard } from './guards/logout.guard';
 import { ClientsComponent } from './concessionnaire/clients/clients.component';
+import { FormatDatePipe } from './Pipes/format-date.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ClientsComponent } from './concessionnaire/clients/clients.component';
     LocationsComponent,
     ReservationsComponent,
     AddReservationComponent,
-    ClientsComponent,
+    FormatDatePipe,
   ],
   imports: [
     BrowserModule,
