@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Concessionnaire } from '../models/concessionnaire.model';
-import { Locataire } from '../models/locataire.model';
 import { JwtUtilsService } from './jwt-utils.service';
 
 @Injectable({
