@@ -12,8 +12,10 @@ import fr.orsys.projet.plage.exception.LienDeParenteExistException;
 import fr.orsys.projet.plage.exception.LienDeParenteNotFoundException;
 import fr.orsys.projet.plage.mapper.LienDeParenteMapper;
 import fr.orsys.projet.plage.service.LienDeParenteService;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class LienDeParenteServiceImpl implements LienDeParenteService {
 
 	private LienDeParenteDAO lienDeParenteDAO;

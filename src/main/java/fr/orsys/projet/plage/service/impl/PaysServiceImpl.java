@@ -3,7 +3,6 @@ package fr.orsys.projet.plage.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.orsys.projet.plage.business.Pays;
@@ -12,11 +11,12 @@ import fr.orsys.projet.plage.dto.PaysDTO;
 import fr.orsys.projet.plage.exception.PaysExistException;
 import fr.orsys.projet.plage.mapper.PaysMapper;
 import fr.orsys.projet.plage.service.PaysService;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class PaysServiceImpl implements PaysService {
 
-	@Autowired
 	private PaysDAO paysDAO;
 	private PaysMapper paysMapper;
 	

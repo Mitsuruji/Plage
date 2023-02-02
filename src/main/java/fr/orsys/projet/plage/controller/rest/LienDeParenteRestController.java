@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600, exposedHeaders = "**")
 @AllArgsConstructor
-@RequestMapping("/api/lien")
+@RequestMapping("/api/lien-de-parente")
 public class LienDeParenteRestController {
 
 	private LienDeParenteService lienDeParenteService;

@@ -7,7 +7,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,12 +29,12 @@ public class SecurityConfiguration {
 	private PasswordEncoder passwordEncoder;
 
 	@Bean
-	public JwtAuthTokenFilter authenticationJwtTokenFilter() {
+	JwtAuthTokenFilter authenticationJwtTokenFilter() {
 		return new JwtAuthTokenFilter();
 	}
 
 	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
+	DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
 		authProvider.setUserDetailsService(userDetailsService);
@@ -45,17 +44,17 @@ public class SecurityConfiguration {
 	}
 
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}
 	
 
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+		http.cors().and().csrf().ignoringAntMatchers("/api/lien-de-parente/**").disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers("/api/utilisateur/**", "/api/concessionnaire/**", "/api/locataire/**", "/api/pays/**",
-						"/api/lien-de-parente", "/api/file/**", "/v3/api-docs/**", "/swagger-resources",
+						"/api/lien-de-parente/**", "/api/file/**", "/v3/api-docs/**", "/swagger-resources",
 						"/swagger-resources/**", "/configuration/ui", "/configuration/security", "/swagger-ui/**",
 						"/webjars/**", "/swagger-ui")
 				.permitAll().anyRequest().authenticated();
@@ -65,5 +64,7 @@ public class SecurityConfiguration {
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
+	
+	
 
 }
