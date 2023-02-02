@@ -24,6 +24,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import fr.orsys.projet.plage.dto.LocataireDTO;
 import fr.orsys.projet.plage.dto.LocationDTO;
+import fr.orsys.projet.plage.exception.FileNotFoundException;
 import fr.orsys.projet.plage.exception.UtilisateurExistException;
 import fr.orsys.projet.plage.exception.UtilisateurNotFoundException;
 import fr.orsys.projet.plage.service.LocataireService;
@@ -41,6 +42,17 @@ public class LocataireRestController {
 	private LocataireService locataireService;
 	private LocationService locationService;
 	private JwtGeneratorService jwtGeneratorService;
+	
+	
+	@GetMapping("")
+	public ResponseEntity<Object> getFiles(HttpServletRequest request) {
+		try {
+			List<LocataireDTO> locataireDTOs = locataireService.getLocataires();
+			return ResponseEntity.ok(locataireDTOs);
+		} catch (FileNotFoundException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+		}
+	}
 
 	// feature 10
 	@PostMapping("register")

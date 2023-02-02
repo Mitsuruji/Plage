@@ -28,7 +28,7 @@ const myRoutes: Routes = [
         canActivate: [ConcessionnaireGuard],
       },
       {
-        path: 'clients',
+        path: 'client',
         component: ClientsComponent,
         canActivate: [ConcessionnaireGuard],
       },

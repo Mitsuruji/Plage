@@ -35,8 +35,8 @@ public class FileRestController {
 	@GetMapping("")
 	public ResponseEntity<Object> getFiles(HttpServletRequest request) {
 		try {
-			List<FileDTO> listFileDTO = fileService.getFilesDTO();
-			return ResponseEntity.ok(listFileDTO);
+			List<FileDTO> FileDTOs = fileService.getFilesDTO();
+			return ResponseEntity.ok(FileDTOs);
 		} catch (FileNotFoundException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 		}

@@ -27,9 +27,9 @@ public class UserDetailsImpl implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	private static List<String> role = Arrays.asList(new String[] { "Locataire", "Concessionnaire" });
+	private static List<String> role = Arrays.asList("Locataire", "Concessionnaire");
 
-	public UserDetailsImpl(Long id, String username, String email, String password,
+	public UserDetailsImpl(Long id, String username, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.username = username;
@@ -41,7 +41,7 @@ public class UserDetailsImpl implements UserDetails {
 		List<GrantedAuthority> authorities = role.stream().map(role -> new SimpleGrantedAuthority(role))
 				.collect(Collectors.toList());
 
-		return new UserDetailsImpl(user.getId(), user.getEmail(), user.getEmail(), user.getMotDePasse(), authorities);
+		return new UserDetailsImpl(user.getId(), user.getEmail(), user.getMotDePasse(), authorities);
 	}
 
 	@Override
@@ -80,6 +80,11 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(authorities, id, password, username);
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -88,5 +93,7 @@ public class UserDetailsImpl implements UserDetails {
 		UserDetailsImpl user = (UserDetailsImpl) o;
 		return Objects.equals(id, user.id);
 	}
+	
+	
 
 }
